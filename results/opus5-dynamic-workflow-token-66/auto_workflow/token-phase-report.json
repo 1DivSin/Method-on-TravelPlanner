@@ -1,0 +1,301 @@
+{
+  "run_root": "/public/home/sychen/cxy/workflow/blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827",
+  "attempt_count": 74,
+  "accounting_note": "Outer calls are assigned to the next requested tool action. This is inclusive phase cost, not marginal unique-content attribution. Workflow categories use token-usage.json.",
+  "outer_agent_by_next_action": {
+    "final_response_or_no_tool": {
+      "model_calls": 66,
+      "input_tokens": 3044191,
+      "output_tokens": 39444,
+      "total_tokens": 3083635
+    },
+    "invoke_workflow": {
+      "model_calls": 73,
+      "input_tokens": 3077396,
+      "output_tokens": 24411,
+      "total_tokens": 3101807
+    },
+    "outer_tool:compute_distance": {
+      "model_calls": 129,
+      "input_tokens": 5124842,
+      "output_tokens": 17863,
+      "total_tokens": 5142705
+    },
+    "outer_tool:compute_distance+outer_tool:list_cities_in_state": {
+      "model_calls": 2,
+      "input_tokens": 88050,
+      "output_tokens": 518,
+      "total_tokens": 88568
+    },
+    "outer_tool:compute_distance+outer_tool:search_accommodations": {
+      "model_calls": 8,
+      "input_tokens": 360246,
+      "output_tokens": 1118,
+      "total_tokens": 361364
+    },
+    "outer_tool:compute_distance+outer_tool:search_accommodations+outer_tool:search_flights": {
+      "model_calls": 4,
+      "input_tokens": 160687,
+      "output_tokens": 1003,
+      "total_tokens": 161690
+    },
+    "outer_tool:compute_distance+outer_tool:search_attractions": {
+      "model_calls": 2,
+      "input_tokens": 105182,
+      "output_tokens": 349,
+      "total_tokens": 105531
+    },
+    "outer_tool:compute_distance+outer_tool:search_attractions+outer_tool:search_flights": {
+      "model_calls": 1,
+      "input_tokens": 34223,
+      "output_tokens": 148,
+      "total_tokens": 34371
+    },
+    "outer_tool:compute_distance+outer_tool:search_attractions+outer_tool:search_restaurants": {
+      "model_calls": 1,
+      "input_tokens": 51925,
+      "output_tokens": 301,
+      "total_tokens": 52226
+    },
+    "outer_tool:compute_distance+outer_tool:search_flights": {
+      "model_calls": 50,
+      "input_tokens": 1919543,
+      "output_tokens": 8217,
+      "total_tokens": 1927760
+    },
+    "outer_tool:compute_distance+outer_tool:search_restaurants": {
+      "model_calls": 3,
+      "input_tokens": 151228,
+      "output_tokens": 312,
+      "total_tokens": 151540
+    },
+    "outer_tool:compute_distance+read_skill_md": {
+      "model_calls": 2,
+      "input_tokens": 20197,
+      "output_tokens": 99,
+      "total_tokens": 20296
+    },
+    "outer_tool:list_cities_in_state": {
+      "model_calls": 10,
+      "input_tokens": 356221,
+      "output_tokens": 2101,
+      "total_tokens": 358322
+    },
+    "outer_tool:list_cities_in_state+outer_tool:search_accommodations": {
+      "model_calls": 1,
+      "input_tokens": 40058,
+      "output_tokens": 101,
+      "total_tokens": 40159
+    },
+    "outer_tool:list_cities_in_state+outer_tool:search_flights": {
+      "model_calls": 8,
+      "input_tokens": 286672,
+      "output_tokens": 2264,
+      "total_tokens": 288936
+    },
+    "outer_tool:list_cities_in_state+read_grammar": {
+      "model_calls": 1,
+      "input_tokens": 29677,
+      "output_tokens": 56,
+      "total_tokens": 29733
+    },
+    "outer_tool:list_cities_in_state+read_skill_md": {
+      "model_calls": 18,
+      "input_tokens": 180107,
+      "output_tokens": 622,
+      "total_tokens": 180729
+    },
+    "outer_tool:search_accommodations": {
+      "model_calls": 14,
+      "input_tokens": 652542,
+      "output_tokens": 2261,
+      "total_tokens": 654803
+    },
+    "outer_tool:search_accommodations+outer_tool:search_attractions+outer_tool:search_restaurants": {
+      "model_calls": 1,
+      "input_tokens": 41173,
+      "output_tokens": 69,
+      "total_tokens": 41242
+    },
+    "outer_tool:search_accommodations+outer_tool:search_flights": {
+      "model_calls": 2,
+      "input_tokens": 91246,
+      "output_tokens": 373,
+      "total_tokens": 91619
+    },
+    "outer_tool:search_accommodations+outer_tool:search_restaurants": {
+      "model_calls": 3,
+      "input_tokens": 124525,
+      "output_tokens": 818,
+      "total_tokens": 125343
+    },
+    "outer_tool:search_attractions": {
+      "model_calls": 5,
+      "input_tokens": 239128,
+      "output_tokens": 514,
+      "total_tokens": 239642
+    },
+    "outer_tool:search_attractions+outer_tool:search_restaurants": {
+      "model_calls": 2,
+      "input_tokens": 92285,
+      "output_tokens": 403,
+      "total_tokens": 92688
+    },
+    "outer_tool:search_flights": {
+      "model_calls": 91,
+      "input_tokens": 3612670,
+      "output_tokens": 16705,
+      "total_tokens": 3629375
+    },
+    "outer_tool:search_restaurants": {
+      "model_calls": 5,
+      "input_tokens": 242278,
+      "output_tokens": 483,
+      "total_tokens": 242761
+    },
+    "read_grammar": {
+      "model_calls": 156,
+      "input_tokens": 4116442,
+      "output_tokens": 6789,
+      "total_tokens": 4123231
+    },
+    "read_grammar+read_other": {
+      "model_calls": 1,
+      "input_tokens": 22423,
+      "output_tokens": 63,
+      "total_tokens": 22486
+    },
+    "read_grammar+read_skill_md": {
+      "model_calls": 25,
+      "input_tokens": 622441,
+      "output_tokens": 2035,
+      "total_tokens": 624476
+    },
+    "read_other": {
+      "model_calls": 5,
+      "input_tokens": 153192,
+      "output_tokens": 576,
+      "total_tokens": 153768
+    },
+    "read_other+read_skill_md": {
+      "model_calls": 2,
+      "input_tokens": 20038,
+      "output_tokens": 84,
+      "total_tokens": 20122
+    },
+    "read_skill_md": {
+      "model_calls": 507,
+      "input_tokens": 11195678,
+      "output_tokens": 26526,
+      "total_tokens": 11222204
+    },
+    "write_other": {
+      "model_calls": 8,
+      "input_tokens": 294181,
+      "output_tokens": 6435,
+      "total_tokens": 300616
+    },
+    "write_step_instructions": {
+      "model_calls": 201,
+      "input_tokens": 8264340,
+      "output_tokens": 246957,
+      "total_tokens": 8511297
+    },
+    "write_workflow_source": {
+      "model_calls": 20,
+      "input_tokens": 809916,
+      "output_tokens": 50828,
+      "total_tokens": 860744
+    }
+  },
+  "outer_agent_exclusive_phases": {
+    "inspect_skill_grammar_and_other_files": {
+      "model_calls": 717,
+      "input_tokens": 16360195,
+      "output_tokens": 36850,
+      "total_tokens": 16397045
+    },
+    "author_workflow_files": {
+      "model_calls": 229,
+      "input_tokens": 9368437,
+      "output_tokens": 304220,
+      "total_tokens": 9672657
+    },
+    "outer_direct_travel_research": {
+      "model_calls": 342,
+      "input_tokens": 13774724,
+      "output_tokens": 55921,
+      "total_tokens": 13830645
+    },
+    "invoke_workflow": {
+      "model_calls": 73,
+      "input_tokens": 3077396,
+      "output_tokens": 24411,
+      "total_tokens": 3101807
+    },
+    "final_response_or_no_tool": {
+      "model_calls": 66,
+      "input_tokens": 3044191,
+      "output_tokens": 39444,
+      "total_tokens": 3083635
+    }
+  },
+  "workflow_by_step_category": {
+    "workflow_assembly_selection": {
+      "model_calls": 139,
+      "input_tokens": 1900108,
+      "output_tokens": 101803,
+      "total_tokens": 2001911
+    },
+    "workflow_collection": {
+      "model_calls": 361,
+      "input_tokens": 4260534,
+      "output_tokens": 154560,
+      "total_tokens": 4415094
+    },
+    "workflow_other": {
+      "model_calls": 24,
+      "input_tokens": 276191,
+      "output_tokens": 10418,
+      "total_tokens": 286609
+    },
+    "workflow_validation": {
+      "model_calls": 67,
+      "input_tokens": 1069218,
+      "output_tokens": 66186,
+      "total_tokens": 1135404
+    }
+  },
+  "workflow_incomplete_trace_observed_not_in_step_reports": {
+    "model_calls": 16,
+    "input_tokens": 647920,
+    "output_tokens": 12218,
+    "total_tokens": 660138
+  },
+  "totals": {
+    "outer_agent_semantic": {
+      "model_calls": 1427,
+      "input_tokens": 45624943,
+      "output_tokens": 460846,
+      "total_tokens": 46085789
+    },
+    "workflow_trace_observed": {
+      "model_calls": 607,
+      "input_tokens": 8153971,
+      "output_tokens": 345185,
+      "total_tokens": 8499156
+    },
+    "workflow_reported_complete_steps": {
+      "model_calls": 591,
+      "input_tokens": 7506051,
+      "output_tokens": 332967,
+      "total_tokens": 7839018
+    },
+    "full_chain": {
+      "model_calls": 2034,
+      "input_tokens": 53778914,
+      "output_tokens": 806031,
+      "total_tokens": 54584945
+    }
+  }
+}

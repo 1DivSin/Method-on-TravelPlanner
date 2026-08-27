@@ -1,0 +1,2123 @@
+{
+  "run_root": "/public/home/sychen/cxy/workflow/blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827",
+  "case_count": 66,
+  "completed_case_count": 66,
+  "request_accounting": {
+    "received": 2046,
+    "usage_signals": 2034,
+    "completed": 2034,
+    "unreported_requests": 12,
+    "reported_usage_coverage": 0.9941348973607038,
+    "complete": false
+  },
+  "workflow_report_accounting": {
+    "report_count": 80,
+    "complete_report_count": 77
+  },
+  "totals": {
+    "full_chain": {
+      "model_calls": 2034,
+      "input_tokens": 53778914,
+      "output_tokens": 806031,
+      "total_tokens": 54584945
+    },
+    "workflow": {
+      "model_calls": 591,
+      "input_tokens": 7506051,
+      "output_tokens": 332967,
+      "total_tokens": 7839018
+    },
+    "outer_agent": {
+      "model_calls": 1443,
+      "input_tokens": 46272863,
+      "output_tokens": 473064,
+      "total_tokens": 46745927
+    }
+  },
+  "per_case_total_token_stats": {
+    "full_chain": {
+      "mean": 827044.6212121212,
+      "median": 638516.5,
+      "min": 242674,
+      "max": 4505000
+    },
+    "workflow": {
+      "mean": 118773.0,
+      "median": 89642.5,
+      "min": 42618,
+      "max": 371750
+    },
+    "outer_agent": {
+      "mean": 708271.6212121212,
+      "median": 541687.0,
+      "min": 164279,
+      "max": 4133250
+    }
+  },
+  "per_case": {
+    "1": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 23,
+        "input_tokens": 561995,
+        "output_tokens": 9554,
+        "total_tokens": 571549
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 74999,
+        "output_tokens": 3216,
+        "total_tokens": 78215
+      },
+      "outer_agent": {
+        "model_calls": 17,
+        "input_tokens": 486996,
+        "output_tokens": 6338,
+        "total_tokens": 493334
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-1-11/auto_workflow/workspace/1/attempt-1/flows/travelplanner-myrtle-beach/runs/6708ee0e919709a5cc2054ba21751ffd/token-usage.json",
+          "run_id": "6708ee0e919709a5cc2054ba21751ffd",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "2": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 37,
+        "input_tokens": 1027351,
+        "output_tokens": 14900,
+        "total_tokens": 1042251
+      },
+      "workflow": {
+        "model_calls": 13,
+        "input_tokens": 155773,
+        "output_tokens": 6144,
+        "total_tokens": 161917
+      },
+      "outer_agent": {
+        "model_calls": 24,
+        "input_tokens": 871578,
+        "output_tokens": 8756,
+        "total_tokens": 880334
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-1-11/auto_workflow/workspace/2/attempt-1/flows/tucson-3day-trip/runs/b134c7a61d1ed231c283b322f2c6090d/token-usage.json",
+          "run_id": "b134c7a61d1ed231c283b322f2c6090d",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-1-11/auto_workflow/workspace/2/attempt-1/flows/tucson-3day-trip/runs/e156005363a2a17b93c7e281a736afc3/token-usage.json",
+          "run_id": "e156005363a2a17b93c7e281a736afc3",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "3": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 26,
+        "input_tokens": 624838,
+        "output_tokens": 7728,
+        "total_tokens": 632566
+      },
+      "workflow": {
+        "model_calls": 8,
+        "input_tokens": 90975,
+        "output_tokens": 2988,
+        "total_tokens": 93963
+      },
+      "outer_agent": {
+        "model_calls": 18,
+        "input_tokens": 533863,
+        "output_tokens": 4740,
+        "total_tokens": 538603
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-1-11/auto_workflow/workspace/3/attempt-1/flows/travelplanner-buffalo-atlanta/runs/bce7d33a7b7889d93837977efad74482/token-usage.json",
+          "run_id": "bce7d33a7b7889d93837977efad74482",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "4": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 20,
+        "input_tokens": 465686,
+        "output_tokens": 6444,
+        "total_tokens": 472130
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 70301,
+        "output_tokens": 2830,
+        "total_tokens": 73131
+      },
+      "outer_agent": {
+        "model_calls": 14,
+        "input_tokens": 395385,
+        "output_tokens": 3614,
+        "total_tokens": 398999
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-1-11/auto_workflow/workspace/4/attempt-1/flows/travelplanner-ontario-honolulu/runs/ce415abf23b636c11105b928dbf610cb/token-usage.json",
+          "run_id": "ce415abf23b636c11105b928dbf610cb",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "5": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 28,
+        "input_tokens": 825091,
+        "output_tokens": 8442,
+        "total_tokens": 833533
+      },
+      "workflow": {
+        "model_calls": 7,
+        "input_tokens": 87922,
+        "output_tokens": 3598,
+        "total_tokens": 91520
+      },
+      "outer_agent": {
+        "model_calls": 21,
+        "input_tokens": 737169,
+        "output_tokens": 4844,
+        "total_tokens": 742013
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-1-11/auto_workflow/workspace/5/attempt-1/flows/travelplanner-atlanta-3day/runs/6bfd0ce86803e1f95512b02914d4a31d/token-usage.json",
+          "run_id": "6bfd0ce86803e1f95512b02914d4a31d",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "6": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 21,
+        "input_tokens": 441521,
+        "output_tokens": 8572,
+        "total_tokens": 450093
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 72791,
+        "output_tokens": 3217,
+        "total_tokens": 76008
+      },
+      "outer_agent": {
+        "model_calls": 15,
+        "input_tokens": 368730,
+        "output_tokens": 5355,
+        "total_tokens": 374085
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-1-11/auto_workflow/workspace/6/attempt-1/flows/travelplanner-detroit-sandiego/runs/8bd61ae6e1899fad7577a44a8e75cb42/token-usage.json",
+          "run_id": "8bd61ae6e1899fad7577a44a8e75cb42",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "7": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 21,
+        "input_tokens": 468815,
+        "output_tokens": 7729,
+        "total_tokens": 476544
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 73156,
+        "output_tokens": 3066,
+        "total_tokens": 76222
+      },
+      "outer_agent": {
+        "model_calls": 15,
+        "input_tokens": 395659,
+        "output_tokens": 4663,
+        "total_tokens": 400322
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-1-11/auto_workflow/workspace/7/attempt-1/flows/travelplanner-dallas/runs/2028eae247d8dc9f0676fcdab56fbfcd/token-usage.json",
+          "run_id": "2028eae247d8dc9f0676fcdab56fbfcd",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "8": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 22,
+        "input_tokens": 581873,
+        "output_tokens": 9608,
+        "total_tokens": 591481
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 76422,
+        "output_tokens": 3641,
+        "total_tokens": 80063
+      },
+      "outer_agent": {
+        "model_calls": 16,
+        "input_tokens": 505451,
+        "output_tokens": 5967,
+        "total_tokens": 511418
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-1-11/auto_workflow/workspace/8/attempt-1/flows/travelplanner-boston-sanjuan/runs/26f805182f59c8e44fa13b7c389e10c7/token-usage.json",
+          "run_id": "26f805182f59c8e44fa13b7c389e10c7",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "9": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 24,
+        "input_tokens": 625098,
+        "output_tokens": 9489,
+        "total_tokens": 634587
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 74612,
+        "output_tokens": 3679,
+        "total_tokens": 78291
+      },
+      "outer_agent": {
+        "model_calls": 18,
+        "input_tokens": 550486,
+        "output_tokens": 5810,
+        "total_tokens": 556296
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-1-11/auto_workflow/workspace/9/attempt-1/flows/travelplanner-sarasota-philadelphia/runs/59771491708d18b72d5f2e9dbe13496d/token-usage.json",
+          "run_id": "59771491708d18b72d5f2e9dbe13496d",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "10": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 22,
+        "input_tokens": 513399,
+        "output_tokens": 7905,
+        "total_tokens": 521304
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 71956,
+        "output_tokens": 3226,
+        "total_tokens": 75182
+      },
+      "outer_agent": {
+        "model_calls": 16,
+        "input_tokens": 441443,
+        "output_tokens": 4679,
+        "total_tokens": 446122
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-1-11/auto_workflow/workspace/10/attempt-1/flows/travelplanner_stl_trip/runs/a0734a7604c5fcf61e33a7e7cdf7440a/token-usage.json",
+          "run_id": "a0734a7604c5fcf61e33a7e7cdf7440a",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "11": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 29,
+        "input_tokens": 830050,
+        "output_tokens": 9102,
+        "total_tokens": 839152
+      },
+      "workflow": {
+        "model_calls": 4,
+        "input_tokens": 52366,
+        "output_tokens": 2630,
+        "total_tokens": 54996
+      },
+      "outer_agent": {
+        "model_calls": 25,
+        "input_tokens": 777684,
+        "output_tokens": 6472,
+        "total_tokens": 784156
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-1-11/auto_workflow/workspace/11/attempt-1/flows/travelplanner-msp-sea/runs/9b3fffbdfde34fad19f30d300215190b/token-usage.json",
+          "run_id": "9b3fffbdfde34fad19f30d300215190b",
+          "status": "completed",
+          "complete": false
+        }
+      ]
+    },
+    "12": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 19,
+        "input_tokens": 460193,
+        "output_tokens": 8988,
+        "total_tokens": 469181
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 75200,
+        "output_tokens": 3412,
+        "total_tokens": 78612
+      },
+      "outer_agent": {
+        "model_calls": 13,
+        "input_tokens": 384993,
+        "output_tokens": 5576,
+        "total_tokens": 390569
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-12-22/auto_workflow/workspace/12/attempt-1/flows/travelplanner-12/runs/5cbc2545c1f9cf7336ca19b292e7ea01/token-usage.json",
+          "run_id": "5cbc2545c1f9cf7336ca19b292e7ea01",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "13": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 21,
+        "input_tokens": 496472,
+        "output_tokens": 7280,
+        "total_tokens": 503752
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 71131,
+        "output_tokens": 3267,
+        "total_tokens": 74398
+      },
+      "outer_agent": {
+        "model_calls": 15,
+        "input_tokens": 425341,
+        "output_tokens": 4013,
+        "total_tokens": 429354
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-12-22/auto_workflow/workspace/13/attempt-1/flows/travelplanner_baltimore/runs/fdda201d6e93060752a82994f4d42f4b/token-usage.json",
+          "run_id": "fdda201d6e93060752a82994f4d42f4b",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "14": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 19,
+        "input_tokens": 385176,
+        "output_tokens": 8021,
+        "total_tokens": 393197
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 76592,
+        "output_tokens": 3688,
+        "total_tokens": 80280
+      },
+      "outer_agent": {
+        "model_calls": 13,
+        "input_tokens": 308584,
+        "output_tokens": 4333,
+        "total_tokens": 312917
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-12-22/auto_workflow/workspace/14/attempt-1/flows/appleton-trip/runs/0d7cae5c59e265fce2916d0636bcb13f/token-usage.json",
+          "run_id": "0d7cae5c59e265fce2916d0636bcb13f",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "15": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 21,
+        "input_tokens": 514061,
+        "output_tokens": 7857,
+        "total_tokens": 521918
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 75446,
+        "output_tokens": 3242,
+        "total_tokens": 78688
+      },
+      "outer_agent": {
+        "model_calls": 15,
+        "input_tokens": 438615,
+        "output_tokens": 4615,
+        "total_tokens": 443230
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-12-22/auto_workflow/workspace/15/attempt-1/flows/travelplanner-stl-lasvegas/runs/0993ad7f81e8de1836f2b892f41acbd2/token-usage.json",
+          "run_id": "0993ad7f81e8de1836f2b892f41acbd2",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "16": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 24,
+        "input_tokens": 617055,
+        "output_tokens": 7834,
+        "total_tokens": 624889
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 69843,
+        "output_tokens": 2483,
+        "total_tokens": 72326
+      },
+      "outer_agent": {
+        "model_calls": 18,
+        "input_tokens": 547212,
+        "output_tokens": 5351,
+        "total_tokens": 552563
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-12-22/auto_workflow/workspace/16/attempt-1/flows/spokane-sf-trip/runs/d41e0714269468a853c905ba9e26b1c2/token-usage.json",
+          "run_id": "d41e0714269468a853c905ba9e26b1c2",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "17": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 19,
+        "input_tokens": 402661,
+        "output_tokens": 6231,
+        "total_tokens": 408892
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 68729,
+        "output_tokens": 2761,
+        "total_tokens": 71490
+      },
+      "outer_agent": {
+        "model_calls": 13,
+        "input_tokens": 333932,
+        "output_tokens": 3470,
+        "total_tokens": 337402
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-12-22/auto_workflow/workspace/17/attempt-1/flows/travelplanner-stl-dc/runs/942e8bbf29d77023710379a850f36927/token-usage.json",
+          "run_id": "942e8bbf29d77023710379a850f36927",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "18": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 23,
+        "input_tokens": 569911,
+        "output_tokens": 9299,
+        "total_tokens": 579210
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 79858,
+        "output_tokens": 4730,
+        "total_tokens": 84588
+      },
+      "outer_agent": {
+        "model_calls": 17,
+        "input_tokens": 490053,
+        "output_tokens": 4569,
+        "total_tokens": 494622
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-12-22/auto_workflow/workspace/18/attempt-1/flows/travelplanner-palm-springs/runs/d5c83e3e690031801416f42ed06190a2/token-usage.json",
+          "run_id": "d5c83e3e690031801416f42ed06190a2",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "19": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 22,
+        "input_tokens": 523567,
+        "output_tokens": 6975,
+        "total_tokens": 530542
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 73811,
+        "output_tokens": 3337,
+        "total_tokens": 77148
+      },
+      "outer_agent": {
+        "model_calls": 16,
+        "input_tokens": 449756,
+        "output_tokens": 3638,
+        "total_tokens": 453394
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-12-22/auto_workflow/workspace/19/attempt-1/flows/travelplanner-sea-sf/runs/a6db3798d36790c9276ebcb22c695cfe/token-usage.json",
+          "run_id": "a6db3798d36790c9276ebcb22c695cfe",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "20": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 33,
+        "input_tokens": 880092,
+        "output_tokens": 15552,
+        "total_tokens": 895644
+      },
+      "workflow": {
+        "model_calls": 12,
+        "input_tokens": 151383,
+        "output_tokens": 7332,
+        "total_tokens": 158715
+      },
+      "outer_agent": {
+        "model_calls": 21,
+        "input_tokens": 728709,
+        "output_tokens": 8220,
+        "total_tokens": 736929
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-12-22/auto_workflow/workspace/20/attempt-1/flows/travelplanner-providence-orlando/runs/b78726e17f96c821483c6c8dd4d8c612/token-usage.json",
+          "run_id": "b78726e17f96c821483c6c8dd4d8c612",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-12-22/auto_workflow/workspace/20/attempt-1/flows/travelplanner-providence-orlando/runs/cd1eead68715cbb54002f5c9e63ddbf7/token-usage.json",
+          "run_id": "cd1eead68715cbb54002f5c9e63ddbf7",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "21": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 34,
+        "input_tokens": 715091,
+        "output_tokens": 10360,
+        "total_tokens": 725451
+      },
+      "workflow": {
+        "model_calls": 17,
+        "input_tokens": 209765,
+        "output_tokens": 4334,
+        "total_tokens": 214099
+      },
+      "outer_agent": {
+        "model_calls": 17,
+        "input_tokens": 505326,
+        "output_tokens": 6026,
+        "total_tokens": 511352
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-12-22/auto_workflow/workspace/21/attempt-1/flows/workflows/travelplanner-solo-florida/runs/1a8141bd5f005861c7ee927c71ec7289/token-usage.json",
+          "run_id": "1a8141bd5f005861c7ee927c71ec7289",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "22": {
+      "completed": true,
+      "attempts": 2,
+      "full_chain": {
+        "model_calls": 41,
+        "input_tokens": 1172792,
+        "output_tokens": 11378,
+        "total_tokens": 1184170
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 79924,
+        "output_tokens": 3357,
+        "total_tokens": 83281
+      },
+      "outer_agent": {
+        "model_calls": 35,
+        "input_tokens": 1092868,
+        "output_tokens": 8021,
+        "total_tokens": 1100889
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-12-22/auto_workflow/workspace/22/attempt-2/flows/workflows/travelplanner-il-5day/runs/91720876be4caf9a75a3bb6e2785daed/token-usage.json",
+          "run_id": "91720876be4caf9a75a3bb6e2785daed",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "23": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 26,
+        "input_tokens": 647137,
+        "output_tokens": 10101,
+        "total_tokens": 657238
+      },
+      "workflow": {
+        "model_calls": 8,
+        "input_tokens": 103008,
+        "output_tokens": 3925,
+        "total_tokens": 106933
+      },
+      "outer_agent": {
+        "model_calls": 18,
+        "input_tokens": 544129,
+        "output_tokens": 6176,
+        "total_tokens": 550305
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/23/attempt-1/flows/workflows/texas-two-city-planner/runs/935822ef82dee3d49d777ce9bdb45898/token-usage.json",
+          "run_id": "935822ef82dee3d49d777ce9bdb45898",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "24": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 27,
+        "input_tokens": 658313,
+        "output_tokens": 10726,
+        "total_tokens": 669039
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 80974,
+        "output_tokens": 3454,
+        "total_tokens": 84428
+      },
+      "outer_agent": {
+        "model_calls": 21,
+        "input_tokens": 577339,
+        "output_tokens": 7272,
+        "total_tokens": 584611
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/24/attempt-1/flows/travelplanner-sc-5day/runs/ac083bc0a33a739536737cbe1e2306a5/token-usage.json",
+          "run_id": "ac083bc0a33a739536737cbe1e2306a5",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "25": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 29,
+        "input_tokens": 823000,
+        "output_tokens": 10159,
+        "total_tokens": 833159
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 79695,
+        "output_tokens": 3625,
+        "total_tokens": 83320
+      },
+      "outer_agent": {
+        "model_calls": 23,
+        "input_tokens": 743305,
+        "output_tokens": 6534,
+        "total_tokens": 749839
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/25/attempt-1/flows/michigan-solo-trip/runs/4d99bd59413d56093d2bdd7bef487053/token-usage.json",
+          "run_id": "4d99bd59413d56093d2bdd7bef487053",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "28": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 31,
+        "input_tokens": 960581,
+        "output_tokens": 11124,
+        "total_tokens": 971705
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 78036,
+        "output_tokens": 3273,
+        "total_tokens": 81309
+      },
+      "outer_agent": {
+        "model_calls": 25,
+        "input_tokens": 882545,
+        "output_tokens": 7851,
+        "total_tokens": 890396
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/28/attempt-1/flows/travelplanner-va-5day/runs/1b600452e36d6e2d918b95cc8cd7ecb6/token-usage.json",
+          "run_id": "1b600452e36d6e2d918b95cc8cd7ecb6",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "29": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 52,
+        "input_tokens": 1452353,
+        "output_tokens": 12581,
+        "total_tokens": 1464934
+      },
+      "workflow": {
+        "model_calls": 20,
+        "input_tokens": 229267,
+        "output_tokens": 5309,
+        "total_tokens": 234576
+      },
+      "outer_agent": {
+        "model_calls": 32,
+        "input_tokens": 1223086,
+        "output_tokens": 7272,
+        "total_tokens": 1230358
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/29/attempt-1/flows/tn-two-city-trip/runs/143c6c9e3c9a39c9cd4c7475069998f0/token-usage.json",
+          "run_id": "143c6c9e3c9a39c9cd4c7475069998f0",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/29/attempt-1/flows/tn-two-city-trip/runs/c046ed33b3fa9c180f25c19702d9c933/token-usage.json",
+          "run_id": "c046ed33b3fa9c180f25c19702d9c933",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "30": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 31,
+        "input_tokens": 946932,
+        "output_tokens": 14257,
+        "total_tokens": 961189
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 89984,
+        "output_tokens": 7114,
+        "total_tokens": 97098
+      },
+      "outer_agent": {
+        "model_calls": 25,
+        "input_tokens": 856948,
+        "output_tokens": 7143,
+        "total_tokens": 864091
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/30/attempt-1/flows/keywest-indiana-plan/runs/2469a8ee3aa7e5074d728ce835aca23f/token-usage.json",
+          "run_id": "2469a8ee3aa7e5074d728ce835aca23f",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "31": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 47,
+        "input_tokens": 1246419,
+        "output_tokens": 24432,
+        "total_tokens": 1270851
+      },
+      "workflow": {
+        "model_calls": 20,
+        "input_tokens": 239450,
+        "output_tokens": 9504,
+        "total_tokens": 248954
+      },
+      "outer_agent": {
+        "model_calls": 27,
+        "input_tokens": 1006969,
+        "output_tokens": 14928,
+        "total_tokens": 1021897
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/31/attempt-1/flows/travelplanner-31/runs/75f71a8eb065a400a535a942dad01744/token-usage.json",
+          "run_id": "75f71a8eb065a400a535a942dad01744",
+          "status": "completed",
+          "complete": false
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/31/attempt-1/flows/travelplanner-31/runs/cfd7fa5a81ba0990c45c853ecd2ada8f/token-usage.json",
+          "run_id": "cfd7fa5a81ba0990c45c853ecd2ada8f",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "32": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 27,
+        "input_tokens": 787960,
+        "output_tokens": 13544,
+        "total_tokens": 801504
+      },
+      "workflow": {
+        "model_calls": 2,
+        "input_tokens": 40136,
+        "output_tokens": 2482,
+        "total_tokens": 42618
+      },
+      "outer_agent": {
+        "model_calls": 25,
+        "input_tokens": 747824,
+        "output_tokens": 11062,
+        "total_tokens": 758886
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/32/attempt-1/flows/wa-5day-itinerary/runs/ae92f825c71d6c9d0d69eae9886d721b/token-usage.json",
+          "run_id": "ae92f825c71d6c9d0d69eae9886d721b",
+          "status": "completed",
+          "complete": false
+        }
+      ]
+    },
+    "33": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 26,
+        "input_tokens": 617643,
+        "output_tokens": 9659,
+        "total_tokens": 627302
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 78996,
+        "output_tokens": 4213,
+        "total_tokens": 83209
+      },
+      "outer_agent": {
+        "model_calls": 20,
+        "input_tokens": 538647,
+        "output_tokens": 5446,
+        "total_tokens": 544093
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/33/attempt-1/flows/workflows/wa-two-city-plan/runs/0a7cfbd88f25a79f6f3a73263b0ed1b0/token-usage.json",
+          "run_id": "0a7cfbd88f25a79f6f3a73263b0ed1b0",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "34": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 22,
+        "input_tokens": 538205,
+        "output_tokens": 9148,
+        "total_tokens": 547353
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 82057,
+        "output_tokens": 4552,
+        "total_tokens": 86609
+      },
+      "outer_agent": {
+        "model_calls": 16,
+        "input_tokens": 456148,
+        "output_tokens": 4596,
+        "total_tokens": 460744
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/34/attempt-1/flows/nj-5day-trip/runs/ef317c3ffcdf99b0326b7edf2900d8ec/token-usage.json",
+          "run_id": "ef317c3ffcdf99b0326b7edf2900d8ec",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "35": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 26,
+        "input_tokens": 699036,
+        "output_tokens": 10176,
+        "total_tokens": 709212
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 85082,
+        "output_tokens": 4619,
+        "total_tokens": 89701
+      },
+      "outer_agent": {
+        "model_calls": 20,
+        "input_tokens": 613954,
+        "output_tokens": 5557,
+        "total_tokens": 619511
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-23-33/auto_workflow/workspace/35/attempt-1/flows/nc-5day-itinerary/runs/c7841ff187b7a86c2d51372ad8123f0c/token-usage.json",
+          "run_id": "c7841ff187b7a86c2d51372ad8123f0c",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "36": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 32,
+        "input_tokens": 642147,
+        "output_tokens": 19010,
+        "total_tokens": 661157
+      },
+      "workflow": {
+        "model_calls": 17,
+        "input_tokens": 204555,
+        "output_tokens": 8913,
+        "total_tokens": 213468
+      },
+      "outer_agent": {
+        "model_calls": 15,
+        "input_tokens": 437592,
+        "output_tokens": 10097,
+        "total_tokens": 447689
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/36/attempt-1/flows/travelplanner-co-5day/runs/0193c42b790c23ddf397ccab4e62f60d/token-usage.json",
+          "run_id": "0193c42b790c23ddf397ccab4e62f60d",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/36/attempt-1/flows/travelplanner-co-5day/runs/17871d370d02fd3e2d95d274119f891b/token-usage.json",
+          "run_id": "17871d370d02fd3e2d95d274119f891b",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "37": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 25,
+        "input_tokens": 571750,
+        "output_tokens": 10494,
+        "total_tokens": 582244
+      },
+      "workflow": {
+        "model_calls": 10,
+        "input_tokens": 126248,
+        "output_tokens": 4174,
+        "total_tokens": 130422
+      },
+      "outer_agent": {
+        "model_calls": 15,
+        "input_tokens": 445502,
+        "output_tokens": 6320,
+        "total_tokens": 451822
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/37/attempt-1/flows/texas-5day-plan/runs/3d33c9adf0bed761c628dcc275370412/token-usage.json",
+          "run_id": "3d33c9adf0bed761c628dcc275370412",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "38": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 31,
+        "input_tokens": 688058,
+        "output_tokens": 10211,
+        "total_tokens": 698269
+      },
+      "workflow": {
+        "model_calls": 13,
+        "input_tokens": 154376,
+        "output_tokens": 4612,
+        "total_tokens": 158988
+      },
+      "outer_agent": {
+        "model_calls": 18,
+        "input_tokens": 533682,
+        "output_tokens": 5599,
+        "total_tokens": 539281
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/38/attempt-1/flows/travelplanner_florida/runs/3a3fe5d9ff6c74b0af948c0c9dbd4aab/token-usage.json",
+          "run_id": "3a3fe5d9ff6c74b0af948c0c9dbd4aab",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "39": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 40,
+        "input_tokens": 1048834,
+        "output_tokens": 13127,
+        "total_tokens": 1061961
+      },
+      "workflow": {
+        "model_calls": 16,
+        "input_tokens": 196512,
+        "output_tokens": 6076,
+        "total_tokens": 202588
+      },
+      "outer_agent": {
+        "model_calls": 24,
+        "input_tokens": 852322,
+        "output_tokens": 7051,
+        "total_tokens": 859373
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/39/attempt-1/flows/travelplanner-tx-39/runs/02d42e89daf0ef09c289ff3b974e51ed/token-usage.json",
+          "run_id": "02d42e89daf0ef09c289ff3b974e51ed",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/39/attempt-1/flows/travelplanner-tx-39/runs/67b438772a4a926dd5343167920437bd/token-usage.json",
+          "run_id": "67b438772a4a926dd5343167920437bd",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "47": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 28,
+        "input_tokens": 795402,
+        "output_tokens": 14254,
+        "total_tokens": 809656
+      },
+      "workflow": {
+        "model_calls": 8,
+        "input_tokens": 111508,
+        "output_tokens": 5035,
+        "total_tokens": 116543
+      },
+      "outer_agent": {
+        "model_calls": 20,
+        "input_tokens": 683894,
+        "output_tokens": 9219,
+        "total_tokens": 693113
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/47/attempt-1/flows/texas-trip-plan/runs/b6c36cb232594505fe2ee60b3e854656/token-usage.json",
+          "run_id": "b6c36cb232594505fe2ee60b3e854656",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "48": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 28,
+        "input_tokens": 741667,
+        "output_tokens": 13637,
+        "total_tokens": 755304
+      },
+      "workflow": {
+        "model_calls": 8,
+        "input_tokens": 106742,
+        "output_tokens": 5473,
+        "total_tokens": 112215
+      },
+      "outer_agent": {
+        "model_calls": 20,
+        "input_tokens": 634925,
+        "output_tokens": 8164,
+        "total_tokens": 643089
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/48/attempt-1/flows/va-trip-48/runs/30d09c7cdcda2c7990c68b5095e44cbd/token-usage.json",
+          "run_id": "30d09c7cdcda2c7990c68b5095e44cbd",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "49": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 25,
+        "input_tokens": 595734,
+        "output_tokens": 14597,
+        "total_tokens": 610331
+      },
+      "workflow": {
+        "model_calls": 8,
+        "input_tokens": 111202,
+        "output_tokens": 6314,
+        "total_tokens": 117516
+      },
+      "outer_agent": {
+        "model_calls": 17,
+        "input_tokens": 484532,
+        "output_tokens": 8283,
+        "total_tokens": 492815
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/49/attempt-1/flows/nebraska-solo-7day/runs/ad072e51bffa0d2930237531386820b6/token-usage.json",
+          "run_id": "ad072e51bffa0d2930237531386820b6",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "50": {
+      "completed": true,
+      "attempts": 3,
+      "full_chain": {
+        "model_calls": 137,
+        "input_tokens": 4472735,
+        "output_tokens": 32265,
+        "total_tokens": 4505000
+      },
+      "workflow": {
+        "model_calls": 30,
+        "input_tokens": 359960,
+        "output_tokens": 11790,
+        "total_tokens": 371750
+      },
+      "outer_agent": {
+        "model_calls": 107,
+        "input_tokens": 4112775,
+        "output_tokens": 20475,
+        "total_tokens": 4133250
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/50/attempt-2/flows/texas-trip/runs/065662a7f9abda43e5ba681d7f20171b/token-usage.json",
+          "run_id": "065662a7f9abda43e5ba681d7f20171b",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/50/attempt-3/flows/texas-week-plan/runs/559e33c282c9de3d7af6b40dfe58fc98/token-usage.json",
+          "run_id": "559e33c282c9de3d7af6b40dfe58fc98",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/50/attempt-3/flows/texas-week-plan/runs/bbc75cc0eec31679e1d4824df66ab35f/token-usage.json",
+          "run_id": "bbc75cc0eec31679e1d4824df66ab35f",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "63": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 23,
+        "input_tokens": 607322,
+        "output_tokens": 8290,
+        "total_tokens": 615612
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 74573,
+        "output_tokens": 3063,
+        "total_tokens": 77636
+      },
+      "outer_agent": {
+        "model_calls": 17,
+        "input_tokens": 532749,
+        "output_tokens": 5227,
+        "total_tokens": 537976
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/63/attempt-1/flows/travelplanner-63/runs/29df6fa4f4b6fb81ae4cad9fa2c46dfc/token-usage.json",
+          "run_id": "29df6fa4f4b6fb81ae4cad9fa2c46dfc",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "64": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 15,
+        "input_tokens": 290607,
+        "output_tokens": 8346,
+        "total_tokens": 298953
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 74549,
+        "output_tokens": 3485,
+        "total_tokens": 78034
+      },
+      "outer_agent": {
+        "model_calls": 9,
+        "input_tokens": 216058,
+        "output_tokens": 4861,
+        "total_tokens": 220919
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/64/attempt-1/flows/travelplanner-burbank/runs/89c11087e5e82209d11e28ebed238559/token-usage.json",
+          "run_id": "89c11087e5e82209d11e28ebed238559",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "65": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 21,
+        "input_tokens": 439195,
+        "output_tokens": 7648,
+        "total_tokens": 446843
+      },
+      "workflow": {
+        "model_calls": 7,
+        "input_tokens": 86123,
+        "output_tokens": 3461,
+        "total_tokens": 89584
+      },
+      "outer_agent": {
+        "model_calls": 14,
+        "input_tokens": 353072,
+        "output_tokens": 4187,
+        "total_tokens": 357259
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-34-44/auto_workflow/workspace/65/attempt-1/flows/travelplanner-65/runs/b4d574e8c774aeb57c8f91ef7d56372f/token-usage.json",
+          "run_id": "b4d574e8c774aeb57c8f91ef7d56372f",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "66": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 24,
+        "input_tokens": 623234,
+        "output_tokens": 8655,
+        "total_tokens": 631889
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 76429,
+        "output_tokens": 3718,
+        "total_tokens": 80147
+      },
+      "outer_agent": {
+        "model_calls": 18,
+        "input_tokens": 546805,
+        "output_tokens": 4937,
+        "total_tokens": 551742
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/66/attempt-1/flows/travelplanner-charlotte/runs/74953f3df19f52a967e3464c35687049/token-usage.json",
+          "run_id": "74953f3df19f52a967e3464c35687049",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "79": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 20,
+        "input_tokens": 451484,
+        "output_tokens": 6345,
+        "total_tokens": 457829
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 70031,
+        "output_tokens": 2815,
+        "total_tokens": 72846
+      },
+      "outer_agent": {
+        "model_calls": 14,
+        "input_tokens": 381453,
+        "output_tokens": 3530,
+        "total_tokens": 384983
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/79/attempt-1/flows/travelplanner-79/runs/bbf6803b1926d5486de5a095ec9f3506/token-usage.json",
+          "run_id": "bbf6803b1926d5486de5a095ec9f3506",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "80": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 35,
+        "input_tokens": 978791,
+        "output_tokens": 18940,
+        "total_tokens": 997731
+      },
+      "workflow": {
+        "model_calls": 12,
+        "input_tokens": 165527,
+        "output_tokens": 10852,
+        "total_tokens": 176379
+      },
+      "outer_agent": {
+        "model_calls": 23,
+        "input_tokens": 813264,
+        "output_tokens": 8088,
+        "total_tokens": 821352
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/80/attempt-1/flows/workflows/travelplanner-atl-chi/runs/4a4a533b3f0362cbbec03d4c87d9e3a4/token-usage.json",
+          "run_id": "4a4a533b3f0362cbbec03d4c87d9e3a4",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/80/attempt-1/flows/workflows/travelplanner-atl-chi/runs/a4136afb7878fc1b66a8f9fbd42e9097/token-usage.json",
+          "run_id": "a4136afb7878fc1b66a8f9fbd42e9097",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "81": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 21,
+        "input_tokens": 390269,
+        "output_tokens": 8451,
+        "total_tokens": 398720
+      },
+      "workflow": {
+        "model_calls": 10,
+        "input_tokens": 118747,
+        "output_tokens": 3807,
+        "total_tokens": 122554
+      },
+      "outer_agent": {
+        "model_calls": 11,
+        "input_tokens": 271522,
+        "output_tokens": 4644,
+        "total_tokens": 276166
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/81/attempt-1/flows/fl-two-city-plan/runs/220500f505ccdc299b750f828e28fd89/token-usage.json",
+          "run_id": "220500f505ccdc299b750f828e28fd89",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "82": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 31,
+        "input_tokens": 1021174,
+        "output_tokens": 13780,
+        "total_tokens": 1034954
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 97060,
+        "output_tokens": 6986,
+        "total_tokens": 104046
+      },
+      "outer_agent": {
+        "model_calls": 25,
+        "input_tokens": 924114,
+        "output_tokens": 6794,
+        "total_tokens": 930908
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/82/attempt-1/flows/texas-5day-itinerary/runs/a75c3a92609f307ed5fa1f3feb841bdf/token-usage.json",
+          "run_id": "a75c3a92609f307ed5fa1f3feb841bdf",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "83": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 34,
+        "input_tokens": 905939,
+        "output_tokens": 11230,
+        "total_tokens": 917169
+      },
+      "workflow": {
+        "model_calls": 12,
+        "input_tokens": 143530,
+        "output_tokens": 4583,
+        "total_tokens": 148113
+      },
+      "outer_agent": {
+        "model_calls": 22,
+        "input_tokens": 762409,
+        "output_tokens": 6647,
+        "total_tokens": 769056
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/83/attempt-1/flows/ny-2city-trip/runs/7316148096a30419f777ddd7b0b1d862/token-usage.json",
+          "run_id": "7316148096a30419f777ddd7b0b1d862",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "104": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 26,
+        "input_tokens": 637057,
+        "output_tokens": 12703,
+        "total_tokens": 649760
+      },
+      "workflow": {
+        "model_calls": 8,
+        "input_tokens": 109341,
+        "output_tokens": 5276,
+        "total_tokens": 114617
+      },
+      "outer_agent": {
+        "model_calls": 18,
+        "input_tokens": 527716,
+        "output_tokens": 7427,
+        "total_tokens": 535143
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/104/attempt-1/flows/travelplanner-104/runs/001c9ea96fc41e5bfc359f9ab79041fa/token-usage.json",
+          "run_id": "001c9ea96fc41e5bfc359f9ab79041fa",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "106": {
+      "completed": true,
+      "attempts": 3,
+      "full_chain": {
+        "model_calls": 96,
+        "input_tokens": 2795780,
+        "output_tokens": 30165,
+        "total_tokens": 2825945
+      },
+      "workflow": {
+        "model_calls": 21,
+        "input_tokens": 253307,
+        "output_tokens": 10368,
+        "total_tokens": 263675
+      },
+      "outer_agent": {
+        "model_calls": 75,
+        "input_tokens": 2542473,
+        "output_tokens": 19797,
+        "total_tokens": 2562270
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/106/attempt-1/flows/workflows/travelplanner-ga-trip/runs/388dc1b786788ede805a845d8ec58c32/token-usage.json",
+          "run_id": "388dc1b786788ede805a845d8ec58c32",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/106/attempt-3/flows/ga-trip-106/runs/3f06c0adf224197694ed45ca63c0c28c/token-usage.json",
+          "run_id": "3f06c0adf224197694ed45ca63c0c28c",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "120": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 26,
+        "input_tokens": 630240,
+        "output_tokens": 12206,
+        "total_tokens": 642446
+      },
+      "workflow": {
+        "model_calls": 8,
+        "input_tokens": 116956,
+        "output_tokens": 6083,
+        "total_tokens": 123039
+      },
+      "outer_agent": {
+        "model_calls": 18,
+        "input_tokens": 513284,
+        "output_tokens": 6123,
+        "total_tokens": 519407
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/120/attempt-1/flows/travelplanner-idaho-120/runs/96c62084eee7b247ce54eac40d26e501/token-usage.json",
+          "run_id": "96c62084eee7b247ce54eac40d26e501",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "121": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 21,
+        "input_tokens": 465413,
+        "output_tokens": 9619,
+        "total_tokens": 475032
+      },
+      "workflow": {
+        "model_calls": 7,
+        "input_tokens": 79282,
+        "output_tokens": 3322,
+        "total_tokens": 82604
+      },
+      "outer_agent": {
+        "model_calls": 14,
+        "input_tokens": 386131,
+        "output_tokens": 6297,
+        "total_tokens": 392428
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/121/attempt-1/flows/travelplanner-121/runs/d5fa13e9a0a12fd669527b19ae7c8683/token-usage.json",
+          "run_id": "d5fa13e9a0a12fd669527b19ae7c8683",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "122": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 14,
+        "input_tokens": 235546,
+        "output_tokens": 7128,
+        "total_tokens": 242674
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 74674,
+        "output_tokens": 3721,
+        "total_tokens": 78395
+      },
+      "outer_agent": {
+        "model_calls": 8,
+        "input_tokens": 160872,
+        "output_tokens": 3407,
+        "total_tokens": 164279
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-45-55/auto_workflow/workspace/122/attempt-1/flows/travelplanner-122/runs/6ca339b8678a373ff5db8270329009aa/token-usage.json",
+          "run_id": "6ca339b8678a373ff5db8270329009aa",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "123": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 17,
+        "input_tokens": 379122,
+        "output_tokens": 8816,
+        "total_tokens": 387938
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 77611,
+        "output_tokens": 5134,
+        "total_tokens": 82745
+      },
+      "outer_agent": {
+        "model_calls": 11,
+        "input_tokens": 301511,
+        "output_tokens": 3682,
+        "total_tokens": 305193
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/123/attempt-1/flows/nashville-detroit-3day/runs/9c5c8aeea2f50c35d7f3c7ae06b5670c/token-usage.json",
+          "run_id": "9c5c8aeea2f50c35d7f3c7ae06b5670c",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "124": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 20,
+        "input_tokens": 436888,
+        "output_tokens": 8907,
+        "total_tokens": 445795
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 77354,
+        "output_tokens": 4356,
+        "total_tokens": 81710
+      },
+      "outer_agent": {
+        "model_calls": 14,
+        "input_tokens": 359534,
+        "output_tokens": 4551,
+        "total_tokens": 364085
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/124/attempt-1/flows/knoxville-trip-124/runs/8229bcfba005ce7d695ce61644bdaf01/token-usage.json",
+          "run_id": "8229bcfba005ce7d695ce61644bdaf01",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "138": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 21,
+        "input_tokens": 425796,
+        "output_tokens": 8738,
+        "total_tokens": 434534
+      },
+      "workflow": {
+        "model_calls": 8,
+        "input_tokens": 96096,
+        "output_tokens": 4445,
+        "total_tokens": 100541
+      },
+      "outer_agent": {
+        "model_calls": 13,
+        "input_tokens": 329700,
+        "output_tokens": 4293,
+        "total_tokens": 333993
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/138/attempt-1/flows/travelplanner-138/runs/f7cad7de4aa7600b9be5cf6cb52ecce0/token-usage.json",
+          "run_id": "f7cad7de4aa7600b9be5cf6cb52ecce0",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "139": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 24,
+        "input_tokens": 614722,
+        "output_tokens": 10080,
+        "total_tokens": 624802
+      },
+      "workflow": {
+        "model_calls": 6,
+        "input_tokens": 66961,
+        "output_tokens": 2685,
+        "total_tokens": 69646
+      },
+      "outer_agent": {
+        "model_calls": 18,
+        "input_tokens": 547761,
+        "output_tokens": 7395,
+        "total_tokens": 555156
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/139/attempt-1/flows/travelplanner-139/runs/b465ffff5aa96d8c6097083308534d71/token-usage.json",
+          "run_id": "b465ffff5aa96d8c6097083308534d71",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "146": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 35,
+        "input_tokens": 910910,
+        "output_tokens": 17134,
+        "total_tokens": 928044
+      },
+      "workflow": {
+        "model_calls": 12,
+        "input_tokens": 156685,
+        "output_tokens": 7923,
+        "total_tokens": 164608
+      },
+      "outer_agent": {
+        "model_calls": 23,
+        "input_tokens": 754225,
+        "output_tokens": 9211,
+        "total_tokens": 763436
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/146/attempt-1/flows/travelplanner-146/runs/5792e3b606dd301a6eff580b769f567f/token-usage.json",
+          "run_id": "5792e3b606dd301a6eff580b769f567f",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/146/attempt-1/flows/travelplanner-146/runs/a4d49417e290c56b7318d0ac720ae9e9/token-usage.json",
+          "run_id": "a4d49417e290c56b7318d0ac720ae9e9",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "148": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 50,
+        "input_tokens": 1787167,
+        "output_tokens": 26026,
+        "total_tokens": 1813193
+      },
+      "workflow": {
+        "model_calls": 12,
+        "input_tokens": 177140,
+        "output_tokens": 11266,
+        "total_tokens": 188406
+      },
+      "outer_agent": {
+        "model_calls": 38,
+        "input_tokens": 1610027,
+        "output_tokens": 14760,
+        "total_tokens": 1624787
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/148/attempt-1/flows/tn-two-city-road-trip/runs/6416f115bc824b2d5f0cc21f475525cf/token-usage.json",
+          "run_id": "6416f115bc824b2d5f0cc21f475525cf",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/148/attempt-1/flows/tn-two-city-road-trip/runs/ff8c0d6db0195a3f23c7a9f6f53c7ed5/token-usage.json",
+          "run_id": "ff8c0d6db0195a3f23c7a9f6f53c7ed5",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "162": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 34,
+        "input_tokens": 1038845,
+        "output_tokens": 16465,
+        "total_tokens": 1055310
+      },
+      "workflow": {
+        "model_calls": 8,
+        "input_tokens": 112969,
+        "output_tokens": 6334,
+        "total_tokens": 119303
+      },
+      "outer_agent": {
+        "model_calls": 26,
+        "input_tokens": 925876,
+        "output_tokens": 10131,
+        "total_tokens": 936007
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/162/attempt-1/flows/tn-trip/runs/339e2e3882bb5368f145491c8280f4cd/token-usage.json",
+          "run_id": "339e2e3882bb5368f145491c8280f4cd",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "163": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 18,
+        "input_tokens": 303262,
+        "output_tokens": 10368,
+        "total_tokens": 313630
+      },
+      "workflow": {
+        "model_calls": 10,
+        "input_tokens": 121145,
+        "output_tokens": 4445,
+        "total_tokens": 125590
+      },
+      "outer_agent": {
+        "model_calls": 8,
+        "input_tokens": 182117,
+        "output_tokens": 5923,
+        "total_tokens": 188040
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/163/attempt-1/flows/ga-trip-163/runs/fa9e16b3c7a7c066c3c48247447bb69f/token-usage.json",
+          "run_id": "fa9e16b3c7a7c066c3c48247447bb69f",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "164": {
+      "completed": true,
+      "attempts": 3,
+      "full_chain": {
+        "model_calls": 74,
+        "input_tokens": 1908708,
+        "output_tokens": 24380,
+        "total_tokens": 1933088
+      },
+      "workflow": {
+        "model_calls": 19,
+        "input_tokens": 233303,
+        "output_tokens": 9952,
+        "total_tokens": 243255
+      },
+      "outer_agent": {
+        "model_calls": 55,
+        "input_tokens": 1675405,
+        "output_tokens": 14428,
+        "total_tokens": 1689833
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/164/attempt-2/flows/illinois-road-trip/runs/c76091d00373ac41fcec18030d4d9135/token-usage.json",
+          "run_id": "c76091d00373ac41fcec18030d4d9135",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/164/attempt-3/flows/il-7day-group5/runs/c28cae511a2ced3301fd30d643f0a692/token-usage.json",
+          "run_id": "c28cae511a2ced3301fd30d643f0a692",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "165": {
+      "completed": true,
+      "attempts": 1,
+      "full_chain": {
+        "model_calls": 48,
+        "input_tokens": 1638162,
+        "output_tokens": 16535,
+        "total_tokens": 1654697
+      },
+      "workflow": {
+        "model_calls": 8,
+        "input_tokens": 108102,
+        "output_tokens": 5642,
+        "total_tokens": 113744
+      },
+      "outer_agent": {
+        "model_calls": 40,
+        "input_tokens": 1530060,
+        "output_tokens": 10893,
+        "total_tokens": 1540953
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/165/attempt-1/flows/travelplanner-165/runs/e61b805fe5fac82f564f679a660279ef/token-usage.json",
+          "run_id": "e61b805fe5fac82f564f679a660279ef",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    },
+    "166": {
+      "completed": true,
+      "attempts": 2,
+      "full_chain": {
+        "model_calls": 47,
+        "input_tokens": 1226587,
+        "output_tokens": 32326,
+        "total_tokens": 1258913
+      },
+      "workflow": {
+        "model_calls": 16,
+        "input_tokens": 247813,
+        "output_tokens": 14610,
+        "total_tokens": 262423
+      },
+      "outer_agent": {
+        "model_calls": 31,
+        "input_tokens": 978774,
+        "output_tokens": 17716,
+        "total_tokens": 996490
+      },
+      "workflow_reports": [
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/166/attempt-2/flows/idaho-road-trip-166/runs/06a957e1ca08b30772ec6de671e46223/token-usage.json",
+          "run_id": "06a957e1ca08b30772ec6de671e46223",
+          "status": "completed",
+          "complete": true
+        },
+        {
+          "path": "blueprint/.runs-validation-token-opus5-cc-dynamic-report66-formal-20260827/shard-56-66/auto_workflow/workspace/166/attempt-2/flows/idaho-road-trip-166/runs/62095f2a41569a1c57b39cd808a3dcb6/token-usage.json",
+          "run_id": "62095f2a41569a1c57b39cd808a3dcb6",
+          "status": "completed",
+          "complete": true
+        }
+      ]
+    }
+  }
+}

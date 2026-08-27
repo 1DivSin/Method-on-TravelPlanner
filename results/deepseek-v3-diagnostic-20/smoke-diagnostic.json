@@ -1,0 +1,32 @@
+{
+  "status": "INTERIM_DIAGNOSTIC_NOT_FORMAL_180_ROW_BENCHMARK_RESULT",
+  "prompt_variant": "v2",
+  "variant_description": "Structured workflow execution/return contract; no separate validator or audit step",
+  "model": "deepseek-v4-flash",
+  "split": "validation",
+  "selected_cases": "1-20",
+  "official_evaluator_note": "The official validation entry point expects all 180 rows. These conditional rates use the official repository's commonsense/hard constraint implementations with 20-row denominators.",
+  "arms": {
+    "auto-workflow": {
+      "delivery": [20, 20],
+      "commonsense_micro": [149, 160],
+      "commonsense_macro": [11, 20],
+      "hard_micro": [18, 20],
+      "hard_macro": [18, 20],
+      "final": [11, 20],
+      "mean_elapsed_seconds": 161.81789397547254,
+      "workflow_sources": [20, 20],
+      "local_format_diagnostic_cases": [5, 20]
+    },
+    "no-workflow": {
+      "delivery": [20, 20],
+      "commonsense_micro": [154, 160],
+      "commonsense_macro": [15, 20],
+      "hard_micro": [17, 20],
+      "hard_macro": [17, 20],
+      "final": [14, 20],
+      "mean_elapsed_seconds": 43.64559064692585,
+      "local_format_diagnostic_cases": [1, 20]
+    }
+  }
+}
