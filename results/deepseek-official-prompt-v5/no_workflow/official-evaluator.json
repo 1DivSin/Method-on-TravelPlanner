@@ -1,0 +1,24 @@
+{
+  "arm": "no-workflow",
+  "split": "validation",
+  "prediction_rows": 180,
+  "prediction_sha256": "2881f111e44c396221da4e7d6b4a4ac97830badc598697753edebec51d9bff11",
+  "evaluator_input_path": "blueprint/.runs-validation-deepseek-official-prompt-v5-16way-merged/no_workflow/official-evaluator-input.jsonl",
+  "evaluator_input_sha256": "2881f111e44c396221da4e7d6b4a4ac97830badc598697753edebec51d9bff11",
+  "input_transformations": [],
+  "official_repository": "https://github.com/OSU-NLP-Group/TravelPlanner",
+  "official_commit": "e52c87f4ac348a3410c46dc3553c519db5ec5e23",
+  "official_evaluator_unmodified": true,
+  "query_source": "/public/home/sychen/cxy/workflow/blueprint/travelplanner/validation.csv",
+  "scores": {
+    "Delivery Rate": 1.0,
+    "Commonsense Constraint Micro Pass Rate": 0.8409722222222222,
+    "Commonsense Constraint Macro Pass Rate": 0.28888888888888886,
+    "Hard Constraint Micro Pass Rate": 0.6642857142857143,
+    "Hard Constraint Macro Pass Rate": 0.6611111111111111,
+    "Final Pass Rate": 0.24444444444444444
+  },
+  "returncode": 0,
+  "stdout_path": "blueprint/.runs-validation-deepseek-official-prompt-v5-16way-merged/no_workflow/official-evaluator.stdout.txt",
+  "stderr_path": "blueprint/.runs-validation-deepseek-official-prompt-v5-16way-merged/no_workflow/official-evaluator.stderr.txt"
+}

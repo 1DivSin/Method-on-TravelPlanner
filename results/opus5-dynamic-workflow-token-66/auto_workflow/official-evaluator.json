@@ -1,0 +1,24 @@
+{
+  "arm": "auto-workflow",
+  "split": "validation",
+  "prediction_rows": 180,
+  "prediction_sha256": "bb2be67430afb760f09ea352727980f2b2bb03bb926333a2cbf666eb9ce95a5f",
+  "evaluator_input_path": "blueprint/.eval-validation-token-opus5-cc-dynamic-report66-20260827/auto_workflow/official-evaluator-input.jsonl",
+  "evaluator_input_sha256": "bb2be67430afb760f09ea352727980f2b2bb03bb926333a2cbf666eb9ce95a5f",
+  "input_transformations": [],
+  "official_repository": "https://github.com/OSU-NLP-Group/TravelPlanner",
+  "official_commit": "e52c87f4ac348a3410c46dc3553c519db5ec5e23",
+  "official_evaluator_unmodified": true,
+  "query_source": "/public/home/sychen/cxy/workflow/blueprint/travelplanner/validation.csv",
+  "scores": {
+    "Delivery Rate": 0.36666666666666664,
+    "Commonsense Constraint Micro Pass Rate": 0.35555555555555557,
+    "Commonsense Constraint Macro Pass Rate": 0.28888888888888886,
+    "Hard Constraint Micro Pass Rate": 0.26666666666666666,
+    "Hard Constraint Macro Pass Rate": 0.34444444444444444,
+    "Final Pass Rate": 0.2777777777777778
+  },
+  "returncode": 0,
+  "stdout_path": "blueprint/.eval-validation-token-opus5-cc-dynamic-report66-20260827/auto_workflow/official-evaluator.stdout.txt",
+  "stderr_path": "blueprint/.eval-validation-token-opus5-cc-dynamic-report66-20260827/auto_workflow/official-evaluator.stderr.txt"
+}
