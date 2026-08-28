@@ -51,3 +51,10 @@ The second accuracy change adds `validate_travel_plan` as a structured quality
 gate. A failed report drives one targeted assembly repair using the original
 typed candidates, followed by one revalidation. Prose-only self-review is not
 accepted as validation, and a second failure produces the empty-plan contract.
+
+## v5 token: read static references once
+
+The first token change returns `SKILL.md` and `FusionFlow.g4` atomically and
+allows each logical reference to be read only once per workspace. The
+`workflow` and `workflow-skill` paths share a key, preventing alias-based repeat
+reads. Other files keep normal offset/limit behavior.

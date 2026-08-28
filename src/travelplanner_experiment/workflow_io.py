@@ -6,8 +6,20 @@ from pathlib import Path
 
 
 class WorkspaceIO:
-    def __init__(self, workspace: Path):
+    def __init__(self, workspace: Path, *, read_once_references: bool = False):
         self.workspace = workspace.resolve()
+        self.read_once_references = read_once_references
+        self._reference_reads: set[str] = set()
+
+    @staticmethod
+    def _reference_key(path: Path) -> str | None:
+        lowered = tuple(part.casefold() for part in path.parts)
+        for skill_name in ("workflow", "workflow-skill"):
+            if lowered[-3:] == ("skills", skill_name, "skill.md"):
+                return "workflow-skill"
+            if lowered[-4:] == ("skills", skill_name, "grammar", "fusionflow.g4"):
+                return "workflow-grammar"
+        return None
 
     def _path(self, file_path: str) -> Path:
         raw = Path(file_path.strip())
@@ -20,7 +32,19 @@ class WorkspaceIO:
         path = self._path(file_path)
         if not path.is_file():
             return f"[Error] File not found: {path}"
+        reference_key = self._reference_key(path)
+        if self.read_once_references and reference_key is not None:
+            if reference_key in self._reference_reads:
+                return (
+                    f"[Already loaded] {reference_key} may be read only once in this "
+                    "TravelPlanner attempt. Reuse the content already present in the conversation."
+                )
+            self._reference_reads.add(reference_key)
         content = path.read_text(encoding="utf-8", errors="replace")
+        if self.read_once_references and reference_key is not None:
+            # Static references are returned atomically even if the caller asks
+            # for a partial range, avoiding another model round for pagination.
+            return content
         if offset == 0 and limit == 0:
             return content
         lines = content.splitlines(keepends=True)
