@@ -201,3 +201,36 @@ class TypedTravelPlannerTools:
             availability=availability,
             **({"message": message} if message is not None else {}),
         )
+
+    async def compute_distance(self, origin: str, destination: str, mode: str = "self-driving") -> str:
+        normalized_mode = mode.strip().casefold()
+        if normalized_mode in {"driving", "self driving", "self-driving"}:
+            label = "Self-driving"
+        elif normalized_mode == "taxi":
+            label = "Taxi"
+        else:
+            return json.dumps({"error": "mode must be self-driving or taxi"}, separators=(",", ":"))
+
+        source = f"{label} from {origin} to {destination}"
+        value = self.reference.get(source)
+        if value is None:
+            candidates: list[dict[str, Any]] = []
+            availability = "missing"
+        elif isinstance(value, str):
+            candidates = [
+                {
+                    "mode": label.casefold(),
+                    "origin": origin,
+                    "destination": destination,
+                    "official_string": value,
+                }
+            ]
+            availability = "available"
+        else:
+            raise ValueError(f"typed ground transport reference {source!r} must be a string")
+        return self._result(
+            "ground_transport",
+            source,
+            candidates,
+            availability=availability,
+        )

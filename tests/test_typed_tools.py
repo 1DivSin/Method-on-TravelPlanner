@@ -19,6 +19,7 @@ class TypedToolsTest(unittest.TestCase):
                 {"NAME": "Valid", "city": "B", "price": 100, "room type": "Entire home/apt", "house_rules": "No parties", "minimum nights": 2, "maximum occupancy": 2},
             ],
             "Flight from A to B on 2022-03-01": [{"Flight Number": "F1", "Price": 10, "DepTime": "09:00", "ArrTime": "10:00", "FlightDate": "2022-03-01", "OriginCityName": "A", "DestCityName": "B", "Distance": 100}],
+            "Self-driving from A to B": "self-driving, from A to B, duration: 1 hour, distance: 100 km, cost: 5",
         }
         path = root / "structured.json"
         path.write_text(json.dumps(data), encoding="utf-8")
@@ -72,6 +73,18 @@ class TypedToolsTest(unittest.TestCase):
         self.assertEqual(result["candidate_count"], 0)
         self.assertEqual(result["candidates"], [])
         self.assertNotIn("message", result)
+
+    def test_ground_transport_distinguishes_available_from_missing(self):
+        with tempfile.TemporaryDirectory() as raw:
+            tools = self._tools(Path(raw))
+            available = json.loads(asyncio.run(tools.compute_distance("A", "B")))
+            missing = json.loads(asyncio.run(tools.compute_distance("A", "Unknown")))
+        self.assertEqual(available["availability"], "available")
+        self.assertEqual(available["candidate_count"], 1)
+        self.assertIn("duration: 1 hour", available["candidates"][0]["official_string"])
+        self.assertEqual(missing["availability"], "missing")
+        self.assertEqual(missing["candidate_count"], 0)
+        self.assertEqual(missing["candidates"], [])
 
     def test_invalid_reference_type_fails_closed(self):
         with tempfile.TemporaryDirectory() as raw:
