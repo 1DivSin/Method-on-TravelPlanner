@@ -44,3 +44,10 @@ The first v5 accuracy change replaces raw candidate tables with compact typed
 JSON. Lodging candidates are rejected before selection when minimum nights,
 occupancy, room type, or house rules cannot satisfy the query. The result keeps
 filter counts so an empty source can be distinguished from filtered candidates.
+
+## v5 accuracy: deterministic validation and repair
+
+The second accuracy change adds `validate_travel_plan` as a structured quality
+gate. A failed report drives one targeted assembly repair using the original
+typed candidates, followed by one revalidation. Prose-only self-review is not
+accepted as validation, and a second failure produces the empty-plan contract.

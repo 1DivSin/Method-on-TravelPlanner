@@ -133,6 +133,14 @@ V5_TYPED_CANDIDATE_CONTRACT = """Accuracy treatment: candidate contracts and pre
 
 """
 
+V5_VALIDATION_CONTRACT = """Accuracy treatment: deterministic validation and targeted repair.
+- After assembly, JSON-encode the complete `{idx, query, plan}` object and call `validate_travel_plan`.
+- The validation_report Artifact must be exactly the structured tool result; an LLM prose review does not count.
+- If validation fails, repair only reported fields using the original typed candidates, then validate once more.
+- A failed second validation must return the required empty-plan object.
+
+"""
+
 
 def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
     """Render one registered treatment without reading host paths or secrets."""
@@ -158,6 +166,10 @@ def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
         )
     if variant.casefold() == "v5-typed-candidates":
         return V5_TYPED_CANDIDATE_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
+            idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
+        )
+    if variant.casefold() == "v5-validated":
+        return V5_TYPED_CANDIDATE_CONTRACT + V5_VALIDATION_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
             idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
         )
     treatments = {"v1": WORKFLOW_V1, "v2": WORKFLOW_V2, "v3": WORKFLOW_V3}
