@@ -58,3 +58,12 @@ The first token change returns `SKILL.md` and `FusionFlow.g4` atomically and
 allows each logical reference to be read only once per workspace. The
 `workflow` and `workflow-skill` paths share a key, preventing alias-based repeat
 reads. Other files keep normal offset/limit behavior.
+
+## v5 token: Workflow-Step-only research
+
+The second token change rejects TravelPlanner data-tool calls from the outer
+session. Collection happens only inside `run_flow` Agent Steps, preventing the
+same candidate tables from entering both the outer conversation and Workflow
+contexts. The outer session returns the validated Artifact without reselecting
+or rewriting it. The final `v5` variant composes both accuracy changes and both
+token changes.

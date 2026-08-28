@@ -41,11 +41,26 @@ def _house_rule_allowed(actual: str, required: str) -> bool:
 class TypedTravelPlannerTools:
     """Expose official candidates as compact JSON with stable field names."""
 
-    def __init__(self, structured_reference_path: Path):
+    def __init__(
+        self,
+        structured_reference_path: Path,
+        *,
+        session_id: str = "",
+        workflow_step_only: bool = False,
+    ):
         value = json.loads(structured_reference_path.read_text(encoding="utf-8"))
         if not isinstance(value, dict):
             raise ValueError("structured TravelPlanner reference must be an object")
         self.reference = value
+        self.session_id = session_id.strip()
+        self.workflow_step_only = workflow_step_only
+
+    def _require_workflow_step(self) -> None:
+        if self.workflow_step_only and self.session_id:
+            raise PermissionError(
+                "TravelPlanner data tools are restricted to Agent Steps inside run_flow; "
+                "the outer session may only author and invoke the Workflow."
+            )
 
     def _source_rows(self, description: str) -> list[dict[str, Any]]:
         value = self.reference.get(description, [])
@@ -70,6 +85,7 @@ class TypedTravelPlannerTools:
         )
 
     async def search_flights(self, origin: str, destination: str, departure_date: str) -> str:
+        self._require_workflow_step()
         source = f"Flight from {origin} to {destination} on {departure_date}"
         rows = [
             {
@@ -94,6 +110,7 @@ class TypedTravelPlannerTools:
         required_room_type: str = "",
         required_house_rule: str = "",
     ) -> str:
+        self._require_workflow_step()
         source = f"Accommodations in {city}"
         source_rows = self._source_rows(source)
         kept: list[dict[str, Any]] = []
@@ -140,6 +157,7 @@ class TypedTravelPlannerTools:
         )
 
     async def search_restaurants(self, city: str) -> str:
+        self._require_workflow_step()
         source = f"Restaurants in {city}"
         rows = [
             {
@@ -154,6 +172,7 @@ class TypedTravelPlannerTools:
         return self._result("restaurant", source, rows)
 
     async def search_attractions(self, city: str) -> str:
+        self._require_workflow_step()
         source = f"Attractions in {city}"
         rows = [
             {

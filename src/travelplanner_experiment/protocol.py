@@ -147,6 +147,13 @@ V5_READ_ONCE_CONTRACT = """Token treatment: static Workflow references are read 
 
 """
 
+V5_STEP_ONLY_CONTRACT = """Token treatment: keep TravelPlanner research inside the Workflow.
+- The outer session may parse the request, author the Workflow, call `run_flow`, and return the final Artifact.
+- The outer session MUST NOT call TravelPlanner data tools; only Agent Steps inside `run_flow` may search candidates or distances.
+- After `run_flow`, emit the validated Artifact unchanged without another selection or rewrite pass.
+
+"""
+
 
 def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
     """Render one registered treatment without reading host paths or secrets."""
@@ -180,6 +187,10 @@ def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
         )
     if variant.casefold() == "v5-read-once":
         return V5_READ_ONCE_CONTRACT + V5_TYPED_CANDIDATE_CONTRACT + V5_VALIDATION_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
+            idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
+        )
+    if variant.casefold() == "v5":
+        return V5_READ_ONCE_CONTRACT + V5_STEP_ONLY_CONTRACT + V5_TYPED_CANDIDATE_CONTRACT + V5_VALIDATION_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
             idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
         )
     treatments = {"v1": WORKFLOW_V1, "v2": WORKFLOW_V2, "v3": WORKFLOW_V3}
