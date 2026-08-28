@@ -43,6 +43,44 @@ class ValidatorTest(unittest.TestCase):
         self.assertFalse(bad["valid"])
         self.assertTrue(any(v["constraint"] == "diversity.restaurant" for v in bad["violations"]))
 
+    def test_no_result_reference_is_skipped_by_membership_index(self):
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            reference = {
+                "Restaurants in B": "There is no restaurant in B",
+                "Accommodations in B": "There is no accommodation in B",
+                "Flight from A to B on d1": "There is no flight from A to B on d1",
+            }
+            constraints = {"days": 1, "people_number": 1, "budget": 100}
+            ref = root / "reference.json"
+            con = root / "constraints.json"
+            ref.write_text(json.dumps(reference), encoding="utf-8")
+            con.write_text(json.dumps(constraints), encoding="utf-8")
+            validator = TravelPlanValidator(ref, con)
+            result = json.loads(
+                validator.validate(
+                    json.dumps(
+                        {
+                            "idx": 1,
+                            "query": "trip",
+                            "plan": [
+                                {
+                                    "day": 1,
+                                    "current_city": "B",
+                                    "transportation": "-",
+                                    "breakfast": "-",
+                                    "attraction": "-",
+                                    "lunch": "-",
+                                    "dinner": "-",
+                                    "accommodation": "-",
+                                }
+                            ],
+                        }
+                    )
+                )
+            )
+        self.assertTrue(result["valid"], result)
+
     def test_prompt_requires_tool_validation_and_one_repair(self):
         prompt = render_prompt(Case("1", "trip"), arm="auto-workflow", variant="v5-validated")
         self.assertIn("validate_travel_plan", prompt)

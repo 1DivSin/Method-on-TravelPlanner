@@ -47,11 +47,23 @@ class TypedTravelPlannerTools:
             raise ValueError("structured TravelPlanner reference must be an object")
         self.reference = value
 
-    def _source_rows(self, description: str) -> list[dict[str, Any]]:
-        value = self.reference.get(description, [])
+    def _source_rows(self, description: str) -> tuple[list[dict[str, Any]], str, str | None]:
+        """Return rows plus an explicit availability state.
+
+        TravelPlanner uses a table for available results and a human-readable
+        string for a valid empty search.  Treating the latter as an error was
+        the source of the seven long-running validation failures in the local
+        experiment.
+        """
+
+        value = self.reference.get(description)
+        if value is None:
+            return [], "missing", None
+        if isinstance(value, str):
+            return [], "none", value
         if not isinstance(value, list):
-            raise ValueError(f"typed reference {description!r} must be an array")
-        return [item for item in value if isinstance(item, dict)]
+            raise ValueError(f"typed reference {description!r} must be an array or no-result string")
+        return [item for item in value if isinstance(item, dict)], "available", None
 
     @staticmethod
     def _result(kind: str, source: str, candidates: list[dict[str, Any]], **extra: Any) -> str:
@@ -71,6 +83,7 @@ class TypedTravelPlannerTools:
 
     async def search_flights(self, origin: str, destination: str, departure_date: str) -> str:
         source = f"Flight from {origin} to {destination} on {departure_date}"
+        source_rows, availability, message = self._source_rows(source)
         rows = [
             {
                 "flight_number": item.get("Flight Number"),
@@ -82,9 +95,15 @@ class TypedTravelPlannerTools:
                 "destination": item.get("DestCityName"),
                 "distance": item.get("Distance"),
             }
-            for item in self._source_rows(source)
+            for item in source_rows
         ]
-        return self._result("flight", source, rows)
+        return self._result(
+            "flight",
+            source,
+            rows,
+            availability=availability,
+            **({"message": message} if message is not None else {}),
+        )
 
     async def search_accommodations(
         self,
@@ -95,7 +114,7 @@ class TypedTravelPlannerTools:
         required_house_rule: str = "",
     ) -> str:
         source = f"Accommodations in {city}"
-        source_rows = self._source_rows(source)
+        source_rows, availability, message = self._source_rows(source)
         kept: list[dict[str, Any]] = []
         rejected = {"minimum_nights": 0, "room_type": 0, "house_rule": 0, "invalid_occupancy": 0}
         for item in source_rows:
@@ -129,6 +148,8 @@ class TypedTravelPlannerTools:
             "accommodation",
             source,
             kept,
+            availability=availability,
+            **({"message": message} if message is not None else {}),
             filter={
                 "required_nights": required_nights,
                 "travelers": travelers,
@@ -141,6 +162,7 @@ class TypedTravelPlannerTools:
 
     async def search_restaurants(self, city: str) -> str:
         source = f"Restaurants in {city}"
+        source_rows, availability, message = self._source_rows(source)
         rows = [
             {
                 "name": item.get("Name"),
@@ -149,12 +171,19 @@ class TypedTravelPlannerTools:
                 "cuisines": item.get("Cuisines"),
                 "aggregate_rating": item.get("Aggregate Rating"),
             }
-            for item in self._source_rows(source)
+            for item in source_rows
         ]
-        return self._result("restaurant", source, rows)
+        return self._result(
+            "restaurant",
+            source,
+            rows,
+            availability=availability,
+            **({"message": message} if message is not None else {}),
+        )
 
     async def search_attractions(self, city: str) -> str:
         source = f"Attractions in {city}"
+        source_rows, availability, message = self._source_rows(source)
         rows = [
             {
                 "name": item.get("Name"),
@@ -163,6 +192,12 @@ class TypedTravelPlannerTools:
                 "latitude": item.get("Latitude"),
                 "longitude": item.get("Longitude"),
             }
-            for item in self._source_rows(source)
+            for item in source_rows
         ]
-        return self._result("attraction", source, rows)
+        return self._result(
+            "attraction",
+            source,
+            rows,
+            availability=availability,
+            **({"message": message} if message is not None else {}),
+        )

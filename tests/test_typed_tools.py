@@ -38,6 +38,49 @@ class TypedToolsTest(unittest.TestCase):
         self.assertEqual(result["candidates"][0]["flight_number"], "F1")
         self.assertNotIn("Flight Number", result["candidates"][0])
 
+    def test_no_result_strings_are_structured_empty_results(self):
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "structured.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "Flight from A to B on d1": "There is no flight from A to B on d1",
+                        "Accommodations in B": "There is no accommodation in B",
+                        "Restaurants in B": "There is no restaurant in B",
+                        "Attractions in B": "There is no attraction in B",
+                    }
+                ),
+                encoding="utf-8",
+            )
+            tools = TypedTravelPlannerTools(path)
+            results = [
+                json.loads(asyncio.run(tools.search_flights("A", "B", "d1"))),
+                json.loads(asyncio.run(tools.search_accommodations("B"))),
+                json.loads(asyncio.run(tools.search_restaurants("B"))),
+                json.loads(asyncio.run(tools.search_attractions("B"))),
+            ]
+        self.assertEqual([result["availability"] for result in results], ["none"] * 4)
+        for result in results:
+            self.assertEqual(result["candidate_count"], 0)
+            self.assertEqual(result["candidates"], [])
+            self.assertIn("message", result)
+
+    def test_missing_reference_is_explicit_and_non_fatal(self):
+        with tempfile.TemporaryDirectory() as raw:
+            result = json.loads(asyncio.run(self._tools(Path(raw)).search_restaurants("Unknown")))
+        self.assertEqual(result["availability"], "missing")
+        self.assertEqual(result["candidate_count"], 0)
+        self.assertEqual(result["candidates"], [])
+        self.assertNotIn("message", result)
+
+    def test_invalid_reference_type_fails_closed(self):
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "structured.json"
+            path.write_text(json.dumps({"Restaurants in B": {"Name": "not-a-list"}}), encoding="utf-8")
+            tools = TypedTravelPlannerTools(path)
+            with self.assertRaisesRegex(ValueError, "array or no-result string"):
+                asyncio.run(tools.search_restaurants("B"))
+
     def test_prompt_registers_only_candidate_treatment(self):
         prompt = render_prompt(Case("1", "trip"), arm="auto-workflow", variant="v5-typed-candidates")
         self.assertIn("canonical source fields", prompt)
