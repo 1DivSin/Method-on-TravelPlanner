@@ -1,0 +1,99 @@
+"""Versioned, byte-stable prompt contracts for TravelPlanner experiments."""
+
+from __future__ import annotations
+
+import json
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class Case:
+    case_id: str
+    query: str
+
+
+BASE_PROMPT_TEMPLATE = """You are a travel planning assistant. Use the available TravelPlanner tools to build a complete trip plan for the user query below.
+
+User query:
+{query}
+
+Requirements:
+1. Search flights, accommodations, restaurants, and attractions as needed.
+2. Respect the budget, number of travelers, dates, and any local constraints in the query.
+3. Return ONLY a JSON object inside a markdown code block. The JSON must have this exact shape:
+
+```json
+{{
+  "idx": {idx},
+  "query": {query_json},
+  "plan": [
+    {{
+      "day": 1,
+      "current_city": "from Origin to Destination",
+      "transportation": "Flight Number: F1234567, from Origin to Destination, Departure Time: 09:00, Arrival Time: 11:00",
+      "breakfast": "-",
+      "attraction": "Attraction Name, City;Another Attraction, City;",
+      "lunch": "Restaurant Name, City",
+      "dinner": "Restaurant Name, City",
+      "accommodation": "Accommodation Name, City"
+    }},
+    ...
+  ]
+}}
+```
+
+Field rules:
+- `day`: 1-indexed integer.
+- `current_city`: on the first day use "from <origin> to <destination>"; on the last day use "from <current city> to <origin/home>"; otherwise the city name.
+- `transportation`: use the exact flight/self-driving/taxi format returned by the tools, or "-" if no travel that day.
+- `breakfast`, `lunch`, `dinner`: "<Name>, <City>" or "-".
+- `attraction`: semicolon-separated "<Name>, <City>;" entries, or "-".
+- `accommodation`: "<Name>, <City>" or "-".
+
+Do not include any explanation outside the JSON code block.
+"""
+
+WORKFLOW_V1 = "Please complete the task using workflow skill.\n\n"
+
+WORKFLOW_V2 = """Please complete the task using workflow skill.
+
+Workflow execution contract for this trial:
+1. Author and run one concrete Workflow through run_flow before returning the answer.
+2. Decompose the work into bounded Steps; parallelize only independent searches.
+3. Each Step must return its declared structured Artifact without prose.
+4. Return the final `{idx, query, plan}` Artifact unchanged.
+
+"""
+
+WORKFLOW_V3 = """Please complete the task using workflow skill.
+
+Workflow execution contract for this validator trial:
+1. Author and run one concrete Workflow through run_flow before returning the answer.
+2. Preserve candidate fields required for membership, budget, route, and lodging checks.
+3. Assemble, validate, repair only invalid fields when necessary, and validate again.
+4. Return the final `{idx, query, plan}` Artifact unchanged.
+
+"""
+
+
+def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
+    """Render one registered treatment without reading host paths or secrets."""
+
+    try:
+        idx: int | str = int(case.case_id)
+    except ValueError:
+        idx = case.case_id
+    common = BASE_PROMPT_TEMPLATE.format(
+        idx=json.dumps(idx),
+        query=case.query,
+        query_json=json.dumps(case.query),
+    )
+    if arm == "no-workflow":
+        return common
+    if arm != "auto-workflow":
+        raise ValueError(f"unknown arm: {arm}")
+    treatments = {"v1": WORKFLOW_V1, "v2": WORKFLOW_V2, "v3": WORKFLOW_V3}
+    try:
+        return treatments[variant.casefold()] + common
+    except KeyError as error:
+        raise ValueError(f"unknown prompt variant: {variant}") from error
