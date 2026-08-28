@@ -67,3 +67,10 @@ same candidate tables from entering both the outer conversation and Workflow
 contexts. The outer session returns the validated Artifact without reselecting
 or rewriting it. The final `v5` variant composes both accuracy changes and both
 token changes.
+
+## Pull-request-first development
+
+Repository-local instructions in `AGENTS.md` require every future change to use
+its own branch, worktree, commit, and PR. `scripts/new-worktree.sh` creates the
+worktree from `origin/main` by default or from an explicit preceding branch for
+stacked work.
