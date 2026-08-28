@@ -23,3 +23,10 @@ python -m unittest discover -s tests -v
 
 Later stacked PRs add one treatment at a time. No API credentials, benchmark
 database, generated sessions, or model outputs are committed with this harness.
+
+## Workflow skill contract
+
+The first treatment overlays general planning, structured Artifact, quality
+gate, and repair guidance onto the isolated Workflow skill copy. The overlay is
+idempotent and preserves the source skill frontmatter. It is deliberately
+domain-neutral: TravelPlanner-specific prompt and tool changes come later.
