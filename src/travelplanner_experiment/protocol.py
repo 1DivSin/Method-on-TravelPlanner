@@ -141,6 +141,12 @@ V5_VALIDATION_CONTRACT = """Accuracy treatment: deterministic validation and tar
 
 """
 
+V5_READ_ONCE_CONTRACT = """Token treatment: static Workflow references are read once.
+- Read `skills/workflow/SKILL.md` exactly once and `skills/workflow/grammar/FusionFlow.g4` at most once.
+- Retain both in the current context and never read either again through the `workflow-skill` alias.
+
+"""
+
 
 def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
     """Render one registered treatment without reading host paths or secrets."""
@@ -170,6 +176,10 @@ def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
         )
     if variant.casefold() == "v5-validated":
         return V5_TYPED_CANDIDATE_CONTRACT + V5_VALIDATION_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
+            idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
+        )
+    if variant.casefold() == "v5-read-once":
+        return V5_READ_ONCE_CONTRACT + V5_TYPED_CANDIDATE_CONTRACT + V5_VALIDATION_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
             idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
         )
     treatments = {"v1": WORKFLOW_V1, "v2": WORKFLOW_V2, "v3": WORKFLOW_V3}
