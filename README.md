@@ -37,3 +37,10 @@ The v4 prompt adopts the bounded Claude Code Dynamic Workflow carrier: no more
 than three phases, five Agent Steps, and five tool calls per Step; one fallback
 for an empty query; and a ten-minute end-to-end budget. The TravelPlanner task,
 field rules, and JSON output contract remain byte-equivalent to the baseline.
+
+## v5 accuracy: typed candidates and lodging filters
+
+The first v5 accuracy change replaces raw candidate tables with compact typed
+JSON. Lodging candidates are rejected before selection when minimum nights,
+occupancy, room type, or house rules cannot satisfy the query. The result keeps
+filter counts so an empty source can be distinguished from filtered candidates.
