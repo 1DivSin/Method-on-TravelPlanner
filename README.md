@@ -30,3 +30,10 @@ The first treatment overlays general planning, structured Artifact, quality
 gate, and repair guidance onto the isolated Workflow skill copy. The overlay is
 idempotent and preserves the source skill frontmatter. It is deliberately
 domain-neutral: TravelPlanner-specific prompt and tool changes come later.
+
+## v4 CC Dynamic prompt carrier
+
+The v4 prompt adopts the bounded Claude Code Dynamic Workflow carrier: no more
+than three phases, five Agent Steps, and five tool calls per Step; one fallback
+for an empty query; and a ten-minute end-to-end budget. The TravelPlanner task,
+field rules, and JSON output contract remain byte-equivalent to the baseline.
