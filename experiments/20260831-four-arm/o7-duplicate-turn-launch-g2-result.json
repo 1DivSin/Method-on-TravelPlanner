@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "O7 duplicate Workflow launch prevention",
+    "psi_agent_commit": "41456992",
+    "baseline_commit": "54f55089b036badd1c56c57fff68190bbc34086d",
+    "decision": "rejected",
+    "failed_gate": "G2"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "manifest_sha256": "d9df9b18b733d7032f922aafd7a2113e70bc1eb0a8bb4ca6e71ad30b921e6794",
+    "prompt_sha256": "8994d711510a9a96ad5f1898b7e510d41f555fd1100c5d686e11940745d9f461",
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-o7-canary6-20260831",
+    "runtime": "Python 3.14 with uvloop 0.22.1",
+    "completed_case_ids": [1],
+    "cancelled_case_ids": [48],
+    "not_started_case_ids": [83, 116, 138, 161],
+    "evaluator_run": false,
+    "stop_reason": "Case 48 returned an empty plan after its repair preserved a validator-reported transportation conflict; the batch stopped after O7 blocked the outer Agent's attempted second Workflow launch."
+  },
+  "quality": {
+    "case_results": [
+      {
+        "case_id": 1,
+        "category": "completed",
+        "process_attempts": 1,
+        "workflow_detected": true,
+        "output_contract_passed": true,
+        "elapsed_seconds": 282.0488603510894,
+        "workflow_validation_passed": true
+      },
+      {
+        "case_id": 48,
+        "category": "quality",
+        "process_attempts": 1,
+        "workflow_detected": true,
+        "output_contract_passed": false,
+        "retry_eligible": false,
+        "workflow_runs": 1,
+        "duplicate_workflow_launches_blocked": 1,
+        "validation_errors": [
+          "transportation.conflict: conflicting modes: ['flight', 'self-driving']"
+        ],
+        "summary": "The Workflow repair returned the original mixed-mode plan unchanged, the deterministic revalidation failed, and the Workflow returned an empty plan. The outer Agent then rewrote the Workflow and attempted to start it again in the same Session turn. O7 correctly rejected that second launch before execution, preventing the full duplicate run seen in O2b. The underlying empty-plan result remains a fixed-canary quality failure."
+      }
+    ]
+  },
+  "tokens": {
+    "observed_successful_calls": {
+      "model_calls": 54,
+      "input_tokens": 1056173,
+      "cache_read_input_tokens": 842913,
+      "cache_creation_input_tokens": 105321,
+      "uncached_input_tokens": 107939,
+      "output_tokens": 56140
+    },
+    "request_accounting": {
+      "requests_received": 55,
+      "successful_requests": 54,
+      "usage_signals": 54,
+      "cancelled_in_flight_requests": 1,
+      "upstream_errors": 0,
+      "coverage_complete": false
+    },
+    "completed_workflows": {
+      "workflow_runs": 2,
+      "model_calls": 33,
+      "input_tokens": 449841,
+      "cache_read_input_tokens": 359848,
+      "cache_creation_input_tokens": 44956,
+      "uncached_input_tokens": 45037,
+      "output_tokens": 19919
+    },
+    "observed_outer_residual": {
+      "model_calls": 21,
+      "input_tokens": 606332,
+      "cache_read_input_tokens": 483065,
+      "cache_creation_input_tokens": 60365,
+      "uncached_input_tokens": 62902,
+      "output_tokens": 36221
+    },
+    "baseline_cases_1_and_48": {
+      "model_calls": 60,
+      "input_tokens": 1104155,
+      "output_tokens": 54179
+    },
+    "candidate_observation_caveat": "The candidate totals omit one outer request cancelled after the quality gate had already failed, so they are partial observations and not a complete two-case token comparison."
+  },
+  "notes": [
+    "The per-turn claim passed 75 focused Session and Artifact tests, all 18 Workflow tests, and ruff before G2.",
+    "Static read, parse, compile, instruction materialization, plan generation, and checkpoint creation occur before the claim, so case 1 and case 48 could repair invalid DSL without being blocked.",
+    "The claim is shared atomically by concurrent tools in one turn, reset on the next turn, and isolated across concurrent Sessions.",
+    "O7 achieved its narrow reliability objective in the live run by preventing a duplicate full Workflow execution, but the pre-registered G2 gate rejects any fixed baseline-passing case that becomes a quality failure.",
+    "No evaluator or remaining canary cases were run after the non-retryable case-48 failure."
+  ]
+}
