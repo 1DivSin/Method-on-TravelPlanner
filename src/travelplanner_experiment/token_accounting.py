@@ -74,8 +74,8 @@ class Usage:
 
     @property
     def processed_input_tokens(self) -> int | None:
-        # psi-agent prompt_tokens and Claude modelUsage inputTokens both include
-        # uncached input, cache reads, and cache creation for these experiments.
+        # This ledger parses psi-agent prompt_tokens, which already include
+        # uncached input, cache reads, and cache creation.
         return self.input_tokens
 
     @property
