@@ -143,6 +143,7 @@ V5_VALIDATION_CONTRACT = """Accuracy treatment: deterministic validation and tar
 
 V6_TOKEN_EFFICIENT_CONTRACT = """Token-efficient Workflow contract (quality rules remain mandatory):
 - Read the Workflow Skill and grammar once, then author and run exactly one dynamic Workflow.
+- Author valid FusionFlow on the first attempt: declare every Step and Agent as separate constants; make the Workflow constant/owner exactly match the identifier after `workflow`; bind each Step with `step_executor(step) == agent`; and grant each tool with one scalar statement such as `allowed_tool(agent, "search_flights");`. Never combine Step and Agent types, attach `allowed_tool` to a Step, use equality/list syntax for it, or pass a list as its tool argument.
 - Keep independent typed candidate collection parallel. Preserve canonical source fields and pass every accommodation pre-filter argument.
 - Use one final planning Agent Step that consumes the original typed candidate Artifacts. That same Step must assemble the complete `{idx, query, plan}`, call `validate_travel_plan`, and submit the exact validated object unchanged when valid.
 - The complete object must have exactly the top-level keys `idx`, `query`, and `plan`. Every plan entry must have exactly these eight keys and no others: `day`, `current_city`, `transportation`, `breakfast`, `attraction`, `lunch`, `dinner`, and `accommodation`. The singular `day` key is mandatory; `days` and every other extra or misspelled key are forbidden.

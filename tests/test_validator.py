@@ -97,6 +97,9 @@ class ValidatorTest(unittest.TestCase):
         self.assertIn("exactly these eight keys and no others", prompt)
         self.assertIn("`days` and every other extra or misspelled key are forbidden", prompt)
         self.assertIn("delete the old key, not merely add the corrected key", prompt)
+        self.assertIn('`allowed_tool(agent, "search_flights");`', prompt)
+        self.assertIn("declare every Step and Agent as separate constants", prompt)
+        self.assertIn("Never combine Step and Agent types", prompt)
 
 
 if __name__ == "__main__":
