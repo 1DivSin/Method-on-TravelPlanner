@@ -24,6 +24,11 @@ python -m unittest discover -s tests -v
 Later stacked PRs add one treatment at a time. No API credentials, benchmark
 database, generated sessions, or model outputs are committed with this harness.
 
+The `v6-token-efficient` treatment keeps typed candidate collection and the
+deterministic validation/one-repair quality gate, but colocates assembly,
+validation, and conditional repair in one final planning Agent. The historical
+v4 and v5 prompt contracts remain byte-stable.
+
 ## Workflow skill contract
 
 The first treatment overlays general planning, structured Artifact, quality

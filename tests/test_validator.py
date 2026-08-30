@@ -87,6 +87,14 @@ class ValidatorTest(unittest.TestCase):
         self.assertIn("repair only reported fields", prompt)
         self.assertIn("validate once more", prompt)
 
+    def test_token_efficient_prompt_colocates_final_planning_and_validation(self):
+        prompt = render_prompt(Case("1", "trip"), arm="auto-workflow", variant="v6-token-efficient")
+        self.assertIn("one final planning Agent Step", prompt)
+        self.assertIn("call `validate_travel_plan`", prompt)
+        self.assertIn("submit the exact validated object unchanged", prompt)
+        self.assertIn("validate exactly once more", prompt)
+        self.assertIn("Do not create separate selection, assembly, validator", prompt)
+
 
 if __name__ == "__main__":
     unittest.main()

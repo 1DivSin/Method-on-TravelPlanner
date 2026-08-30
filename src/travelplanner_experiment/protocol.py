@@ -141,6 +141,16 @@ V5_VALIDATION_CONTRACT = """Accuracy treatment: deterministic validation and tar
 
 """
 
+V6_TOKEN_EFFICIENT_CONTRACT = """Token-efficient Workflow contract (quality rules remain mandatory):
+- Read the Workflow Skill and grammar once, then author and run exactly one dynamic Workflow.
+- Keep independent typed candidate collection parallel. Preserve canonical source fields and pass every accommodation pre-filter argument.
+- Use one final planning Agent Step that consumes the original typed candidate Artifacts. That same Step must assemble the complete `{idx, query, plan}`, call `validate_travel_plan`, and submit the exact validated object unchanged when valid.
+- Only when the validator reports invalid, repair the reported fields from the original typed candidates, validate exactly once more, and submit the repaired object only when valid; otherwise submit the required empty-plan object.
+- Do not create separate selection, assembly, validator, pass-through, or repair Agent Steps. Those boundaries repeat the same candidate context and can alter an already validated object.
+- After run_flow returns, emit its final Artifact unchanged. Do not reselect, rewrite fields, or add narration.
+
+"""
+
 
 def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
     """Render one registered treatment without reading host paths or secrets."""
@@ -170,6 +180,10 @@ def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
         )
     if variant.casefold() == "v5-validated":
         return V5_TYPED_CANDIDATE_CONTRACT + V5_VALIDATION_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
+            idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
+        )
+    if variant.casefold() == "v6-token-efficient":
+        return V6_TOKEN_EFFICIENT_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
             idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
         )
     treatments = {"v1": WORKFLOW_V1, "v2": WORKFLOW_V2, "v3": WORKFLOW_V3}
