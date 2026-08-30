@@ -145,7 +145,8 @@ V6_TOKEN_EFFICIENT_CONTRACT = """Token-efficient Workflow contract (quality rule
 - Read the Workflow Skill and grammar once, then author and run exactly one dynamic Workflow.
 - Keep independent typed candidate collection parallel. Preserve canonical source fields and pass every accommodation pre-filter argument.
 - Use one final planning Agent Step that consumes the original typed candidate Artifacts. That same Step must assemble the complete `{idx, query, plan}`, call `validate_travel_plan`, and submit the exact validated object unchanged when valid.
-- Only when the validator reports invalid, repair the reported fields from the original typed candidates, validate exactly once more, and submit the repaired object only when valid; otherwise submit the required empty-plan object.
+- The complete object must have exactly the top-level keys `idx`, `query`, and `plan`. Every plan entry must have exactly these eight keys and no others: `day`, `current_city`, `transportation`, `breakfast`, `attraction`, `lunch`, `dinner`, and `accommodation`. The singular `day` key is mandatory; `days` and every other extra or misspelled key are forbidden.
+- Only when the validator reports invalid, repair the reported fields from the original typed candidates, validate exactly once more, and submit the repaired object only when valid; otherwise submit the required empty-plan object. A field-name repair must replace or rename the invalid field and delete the old key, not merely add the corrected key. Before each validation and before submission, enforce the exact key sets above.
 - Do not create separate selection, assembly, validator, pass-through, or repair Agent Steps. Those boundaries repeat the same candidate context and can alter an already validated object.
 - After run_flow returns, emit its final Artifact unchanged. Do not reselect, rewrite fields, or add narration.
 

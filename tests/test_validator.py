@@ -94,6 +94,9 @@ class ValidatorTest(unittest.TestCase):
         self.assertIn("submit the exact validated object unchanged", prompt)
         self.assertIn("validate exactly once more", prompt)
         self.assertIn("Do not create separate selection, assembly, validator", prompt)
+        self.assertIn("exactly these eight keys and no others", prompt)
+        self.assertIn("`days` and every other extra or misspelled key are forbidden", prompt)
+        self.assertIn("delete the old key, not merely add the corrected key", prompt)
 
 
 if __name__ == "__main__":
