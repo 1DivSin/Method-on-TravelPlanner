@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "O4 direct typed Tool executor",
+    "psi_agent_commit": "bea49615",
+    "baseline_commit": "54f55089b036badd1c56c57fff68190bbc34086d",
+    "decision": "rejected",
+    "failed_gate": "G2"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "manifest_sha256": "d9df9b18b733d7032f922aafd7a2113e70bc1eb0a8bb4ca6e71ad30b921e6794",
+    "prompt_sha256": "8994d711510a9a96ad5f1898b7e510d41f555fd1100c5d686e11940745d9f461",
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-o4-tool-executor-canary6-20260831",
+    "runtime": "Python 3.14 with uvloop 0.22.1",
+    "completed_case_ids": [1],
+    "cancelled_case_ids": [48],
+    "not_started_case_ids": [83, 116, 138, 161],
+    "evaluator_run": false,
+    "stop_reason": "Case 1 added an undeclared days field after its internal validator had accepted the draft; the fixed baseline-passing case therefore failed the output contract."
+  },
+  "quality": {
+    "case_results": [
+      {
+        "case_id": 1,
+        "category": "quality",
+        "process_attempts": 1,
+        "workflow_detected": true,
+        "output_contract_passed": false,
+        "retry_eligible": false,
+        "elapsed_seconds": 262.9183457191102,
+        "workflow_runs": 1,
+        "workflow_internal_draft_validation_passed": true,
+        "validation_errors": [
+          "day 1 has unexpected keys ['days']"
+        ],
+        "direct_tool_executor_steps": 0,
+        "summary": "The Workflow used seven Agent Steps. Its draft passed validate_travel_plan, but the final repair/pass-through Agent added a days key to day 1, causing the runner output contract to fail. No direct Tool executor was authored."
+      },
+      {
+        "case_id": 48,
+        "category": "cancelled_after_gate_failure",
+        "process_attempts": 1,
+        "workflow_detected": false,
+        "output_contract_passed": false,
+        "retry_eligible": false,
+        "summary": "The runner had begun outer authoring calls for case 48 before case 1 was audited. It was interrupted before a Workflow source or answer was produced."
+      }
+    ]
+  },
+  "tokens": {
+    "observed_successful_calls": {
+      "model_calls": 24,
+      "input_tokens": 390676,
+      "cache_read_input_tokens": 314282,
+      "cache_creation_input_tokens": 39267,
+      "uncached_input_tokens": 37127,
+      "output_tokens": 16410
+    },
+    "request_accounting": {
+      "requests_received": 25,
+      "successful_requests": 24,
+      "usage_signals": 24,
+      "cancelled_in_flight_requests": 1,
+      "upstream_errors": 0,
+      "coverage_complete": false
+    },
+    "completed_workflows": {
+      "workflow_runs": 1,
+      "model_calls": 13,
+      "input_tokens": 144576,
+      "cache_read_input_tokens": 116914,
+      "cache_creation_input_tokens": 14606,
+      "uncached_input_tokens": 13056,
+      "output_tokens": 5093,
+      "tool_executor_model_calls": 0
+    },
+    "observed_outer_residual": {
+      "model_calls": 11,
+      "input_tokens": 246100,
+      "cache_read_input_tokens": 197368,
+      "cache_creation_input_tokens": 24661,
+      "uncached_input_tokens": 24071,
+      "output_tokens": 11317
+    },
+    "candidate_observation_caveat": "The full-chain totals include partial case-48 authoring and omit one request cancelled after the quality gate failed, so they are not a complete case-1 comparison."
+  },
+  "adoption": {
+    "direct_tool_executor_steps": 0,
+    "agent_steps": 7,
+    "registered_tools_were_only_allowed_tools": true,
+    "skill_source_bytes_observed_in_history": 62310,
+    "skill_read_bytes_delivered_to_model": 20000,
+    "detailed_direct_tool_section_was_after_truncation": true
+  },
+  "verification": {
+    "pytest": {
+      "passed": 1440,
+      "skipped": 2
+    },
+    "focused_workflow_tests_passed": 28,
+    "ruff_passed": true,
+    "diff_check_passed": true
+  },
+  "notes": [
+    "The runtime capability itself passed strict-JSON, preflight, registry filtering, timing, and zero-token sidecar tests.",
+    "The live author did not receive the detailed Direct Tool syntax because its whole-file Skill read was truncated to the first 20,000 bytes; only the short frontmatter description was visible before authoring.",
+    "No evaluator or remaining canary cases were run after the non-retryable fixed-case quality failure.",
+    "A later candidate may reintroduce the runtime only together with a concise Direct Tool authoring contract before the Skill read truncation boundary; it must use a new commit and a new result directory."
+  ]
+}
