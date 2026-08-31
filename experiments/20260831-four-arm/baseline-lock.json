@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "locked_at": "2026-08-31",
+  "purpose": "Immutable quality, code, data, prompt, and accounting baseline for v6 token optimization and the four-arm comparison.",
+  "repositories": {
+    "psi_agent": {
+      "commit": "54f55089b036badd1c56c57fff68190bbc34086d",
+      "workflow_skill_source_sha256": "8a29ba9ed05c5436611df8e6108be3dc26aff32bd16b6797bed07d84bf2e7552",
+      "workflow_skill_experiment_overlay_sha256": "0c68f01f5dc8a6905c9a6f264ef5dbcc1c999b73c54288d0ca44678c26aab8c5",
+      "fusion_flow_grammar_sha256": "a7f48fd59bad12cad60b6e2f19488e856b477283355bd60597de9a341e59521b",
+      "run_flow_sha256": "d189c042851f2abf88be8261af81c52d384ff2994e862644a91c538d63309532",
+      "workflow_runner_sha256": "881641e1b94a4b1012a7be24994d2bb52fc7d8063c57a3e874791b19ed1ffe71"
+    },
+    "method_on_travelplanner": {
+      "baseline_commit": "b6cb58bc1aef0624b4e02b9fdc0fb59d63360693",
+      "baseline_branch": "fix/typed-reference-artifact-contracts",
+      "upstream_pull_request": "https://github.com/1DivSin/Method-on-TravelPlanner/pull/10"
+    },
+    "official_evaluator": {
+      "repository": "https://github.com/OSU-NLP-Group/TravelPlanner",
+      "commit": "e52c87f4ac348a3410c46dc3553c519db5ec5e23",
+      "eval_py_sha256": "89dbb9e51c951e700f0a4a39798315f9c8fb4658b30f5bdb72727498c4676fb2",
+      "commonsense_constraint_py_sha256": "13cfda27b03d3c638a3a597a8a5f9cbb21ab49fe482745f13db435c9b0c88a6d",
+      "hard_constraint_py_sha256": "18ffc300e9b61b87bcaf27fd54c5aa09c1319a4f403f308b53df3b696e5185b5",
+      "tracked_evaluator_files_unmodified": true
+    }
+  },
+  "inputs": {
+    "cases_validation_jsonl_sha256": "eb577f6a1b12ebdd7540ed7e0947ec2e6967992558cd8906e1a5eb5c81450df3",
+    "validation_csv_sha256": "0e54b26b13c0b6d50e8683765e930bffca949488c44634e530da899914d40e80",
+    "validation_ref_info_jsonl_sha256": "0555348b457226a7cff866a7ec1962b60105fd90bb9e5c030b9e9ec3f2aff1d0",
+    "example_evaluation_jsonl_sha256": "50af8a77602f23b6e8365c264bc5feddb1e39c8703d4d9d91cc95c4f860961dd",
+    "v6_prompt_queries_jsonl_sha256": "fd85817e2648fb14e2a8b1c0fd710ec1ceb2cfdb8cea0e4591fb0a5970161893",
+    "saved_prompt_config_sha256": "dadd1dd3827c878e22de1503f97de628fb469fae24d314807f4c76309a126028",
+    "recorded_common_template_sha256": "08216d1b8ac0ddac402f11c8d9d3c9333e69a5345c9f92f706029ec8b4aac346"
+  },
+  "model": {
+    "provider": "anthropic",
+    "target": "claude-opus-5",
+    "base_url": "https://api2.penguinsaichat.dpdns.org"
+  },
+  "credential_fingerprints": {
+    "v6_optimized": "c7d3a8131583",
+    "cc_dynamic": "0bf0ef5b1b03",
+    "dolphin_plain": "316565ba9872",
+    "cc_plain": "0e7e1d561141"
+  },
+  "quality_baseline": {
+    "case_count": 180,
+    "delivery_rate": 0.9111111111111111,
+    "commonsense_micro": 0.9111111111111111,
+    "commonsense_macro": 0.9111111111111111,
+    "hard_micro": 0.9047619047619048,
+    "hard_macro": 0.9111111111111111,
+    "final_pass": 0.9111111111111111,
+    "failed_case_ids": [26, 30, 40, 53, 78, 80, 105, 111, 115, 117, 154, 156, 160, 164, 171, 180],
+    "gate": "No baseline passing case may become a failure, and none of the six aggregate metrics may decrease."
+  },
+  "saved_30_case_token_baseline": {
+    "canonical_run_map_sha256": "1869fe0abaa9181c6d51591937aa724e9ca7ee1d030b564f834dfa8bbf5a5ac4",
+    "token_attribution_report_sha256": "082f224348e50198f600b6f49664e0aa886abff911a3c200bbe57d22241b5a5b",
+    "canonical_case_count": 30,
+    "exact_full_chain_case_count": 30,
+    "exact_attribution_case_count": 29,
+    "incomplete_attribution_case_ids": [14],
+    "full_chain_input_tokens": 17055224,
+    "full_chain_output_tokens": 803248,
+    "cache_read_input_tokens": 13647314,
+    "cache_creation_input_tokens": 1705191,
+    "uncached_input_tokens": 1702719
+  },
+  "retry_policy": {
+    "retryable": ["network", "rate_limit", "upstream_5xx", "process_infrastructure"],
+    "not_retryable": ["output_contract", "workflow_planning", "validator", "official_evaluator_quality"]
+  },
+  "secrets_recorded": false
+}
