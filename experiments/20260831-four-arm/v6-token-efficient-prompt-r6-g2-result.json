@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "v6 token-efficient versioned prompt revision 6",
+    "method_commit": "56039a8",
+    "psi_agent_commit": "4dc1a86f6836f9a28e5de5ee563b8fd91260675a",
+    "decision": "rejected",
+    "failed_gate": "G2 token-efficiency precheck"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-token-efficient-prompt-r6-canary6-20260831",
+    "completed_case_ids": [1],
+    "cancelled_case_ids": [48],
+    "not_started_case_ids": [83, 116, 138, 161],
+    "evaluator_run": false,
+    "stop_reason": "Case 48's first-authored Workflow used invalid one-argument agent_config calls for all six Agents. The run was stopped immediately rather than spending tokens on deterministic FusionFlow authoring repair."
+  },
+  "quality": {
+    "case_1": {
+      "output_contract_passed": true,
+      "strict_day_key_contract_passed": true,
+      "attempts": 1
+    },
+    "case_48": {
+      "status": "cancelled_after_first_compile_error",
+      "compile_error": "agent_config expects 4 arguments, got 1",
+      "retry_eligible": false
+    }
+  },
+  "authoring": {
+    "case_1_first_authored_workflow_compiled": true,
+    "case_48_first_authored_workflow_compiled": false,
+    "invalid_form": "agent_config(agent) == model",
+    "grammar_contract": "agent_config(Agent, Model, Engine, ApiBase) has arity 4",
+    "chosen_follow_up": "Omit optional agent_config entirely and inherit the configured runtime model."
+  },
+  "tokens": {
+    "partial_full_chain": {
+      "model_calls": 20,
+      "input_tokens": 326824,
+      "cache_read_input_tokens": 261688,
+      "cache_creation_input_tokens": 32696,
+      "uncached_input_tokens": 32440,
+      "output_tokens": 19470
+    },
+    "completed_case_1_workflow": {
+      "model_calls": 10,
+      "input_tokens": 121738,
+      "cache_read_input_tokens": 95935,
+      "cache_creation_input_tokens": 11986,
+      "uncached_input_tokens": 13817,
+      "output_tokens": 6455
+    },
+    "request_accounting": {
+      "requests_received": 20,
+      "successful_requests": 20,
+      "usage_signals": 20,
+      "coverage_complete": true
+    }
+  },
+  "notes": [
+    "No answer was retried and no authoring repair was allowed to continue.",
+    "No network, authentication, rate-limit, or upstream 5xx error occurred.",
+    "The official evaluator was not run because G2 authoring efficiency had already failed."
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "O4b visible direct typed Tool authoring contract",
+    "psi_agent_commit": "2b6433c6",
+    "baseline_commit": "54f55089b036badd1c56c57fff68190bbc34086d",
+    "decision": "rejected",
+    "failed_gate": "G2"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "manifest_sha256": "d9df9b18b733d7032f922aafd7a2113e70bc1eb0a8bb4ca6e71ad30b921e6794",
+    "prompt_sha256": "8994d711510a9a96ad5f1898b7e510d41f555fd1100c5d686e11940745d9f461",
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-o4b-tool-executor-canary6-20260831",
+    "runtime": "Python 3.14 with uvloop 0.22.1",
+    "completed_case_ids": [1],
+    "cancelled_case_ids": [48],
+    "not_started_case_ids": [83, 116, 138, 161],
+    "evaluator_run": false,
+    "stop_reason": "Case 1 repeated the O4 undeclared-days output failure, and the generated Workflow still used zero direct Tool executors despite the now-visible mandatory authoring rule."
+  },
+  "quality": {
+    "case_results": [
+      {
+        "case_id": 1,
+        "category": "quality",
+        "process_attempts": 1,
+        "workflow_detected": true,
+        "output_contract_passed": false,
+        "retry_eligible": false,
+        "elapsed_seconds": 267.5696612519678,
+        "workflow_runs": 1,
+        "workflow_internal_draft_validation_passed": true,
+        "validation_errors": [
+          "day 1 has unexpected keys ['days']"
+        ],
+        "direct_tool_executor_steps": 0,
+        "summary": "The draft passed validate_travel_plan, but the final Agent added a days key to day 1. The eight-Step Workflow contained only Agent executors."
+      },
+      {
+        "case_id": 48,
+        "category": "cancelled_after_gate_failure",
+        "process_attempts": 1,
+        "workflow_detected": false,
+        "output_contract_passed": false,
+        "retry_eligible": false,
+        "summary": "The next case had begun an outer request but was interrupted before authoring a Workflow or producing an answer."
+      }
+    ]
+  },
+  "tokens": {
+    "observed_successful_calls": {
+      "model_calls": 26,
+      "input_tokens": 416182,
+      "cache_read_input_tokens": 332890,
+      "cache_creation_input_tokens": 41594,
+      "uncached_input_tokens": 41698,
+      "output_tokens": 17761
+    },
+    "request_accounting": {
+      "requests_received": 27,
+      "successful_requests": 26,
+      "usage_signals": 26,
+      "cancelled_in_flight_requests": 1,
+      "upstream_errors": 0,
+      "coverage_complete": false
+    },
+    "completed_workflows": {
+      "workflow_runs": 1,
+      "model_calls": 15,
+      "input_tokens": 162159,
+      "cache_read_input_tokens": 130195,
+      "cache_creation_input_tokens": 16265,
+      "uncached_input_tokens": 15699,
+      "output_tokens": 4985,
+      "tool_executor_model_calls": 0
+    },
+    "observed_outer_residual": {
+      "model_calls": 11,
+      "input_tokens": 254023,
+      "cache_read_input_tokens": 202695,
+      "cache_creation_input_tokens": 25329,
+      "uncached_input_tokens": 25999,
+      "output_tokens": 12776
+    },
+    "candidate_observation_caveat": "The full-chain totals include partial case-48 authoring and omit one cancelled request, so they are not a complete case-1 comparison."
+  },
+  "adoption": {
+    "direct_tool_executor_steps": 0,
+    "agent_steps": 8,
+    "direct_tool_contract_start_byte": 15968,
+    "direct_tool_contract_end_byte": 17588,
+    "skill_read_delivery_limit_bytes": 20000,
+    "contract_was_visible": true,
+    "author_behavior": "The author introduced sorting, top-k projection, field projection, and multi-call merging into collector Steps, then classified those transformations as reasons to keep every collector Agent-backed."
+  },
+  "verification": {
+    "focused_workflow_tests_passed": 29,
+    "ruff_passed": true,
+    "diff_check_passed": true
+  },
+  "notes": [
+    "The initial Workflow incorrectly declared Step identities as both Step and Agent, then used an undeclared agent executor; a second revision used the wrong allowed_tool arity. The third revision compiled.",
+    "Making the capability visible was necessary but not sufficient: the author added avoidable collection transformations that bypassed the direct lookup rule.",
+    "The completed Workflow used more model calls than O4 case 1 and produced no Tool-side zero-token records.",
+    "No evaluator or remaining canary cases were run after the fixed-case quality failure and zero-adoption finding."
+  ]
+}

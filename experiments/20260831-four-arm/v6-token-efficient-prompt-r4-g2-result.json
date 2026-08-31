@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "v6 token-efficient versioned prompt revision 4",
+    "method_commit": "f3c9481",
+    "psi_agent_commit": "4dc1a86f6836f9a28e5de5ee563b8fd91260675a",
+    "decision": "rejected",
+    "failed_gate": "G2 quality and output contract"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-token-efficient-prompt-r4-canary6-20260831",
+    "completed_case_ids": [1, 48, 83, 116, 138],
+    "failed_case_ids": [161],
+    "evaluator_run": false,
+    "stop_reason": "Case 161 selected Buffalo and Syracuse before discovering that both lacked required lodging, dining, and attraction support. Its second deterministic validation remained invalid, so the Workflow correctly returned the required empty-plan object and the strict runner rejected the non-empty-plan contract."
+  },
+  "quality": {
+    "cases_1_48_83_116_138": {
+      "output_contract_passed": true,
+      "strict_day_key_contract_passed": true,
+      "attempts_each": 1
+    },
+    "case_161": {
+      "output_contract_passed": false,
+      "runner_error": "plan must be a non-empty list",
+      "validation_calls": 2,
+      "first_validation_violation_count": 18,
+      "second_validation_violation_count": 16,
+      "empty_plan_fallback_exact": true,
+      "retry_eligible": false,
+      "root_causes": [
+        "The route collector fixed cities before lodging, dining, and attraction viability was known.",
+        "The route artifact discarded canonical ground-transport official_string values, so the final Agent reconstructed strings that failed exact candidate membership."
+      ]
+    }
+  },
+  "authoring": {
+    "first_authored_workflows_compiled": true,
+    "writes_per_case": 1,
+    "run_flow_calls_per_case": 1,
+    "outer_model_turns_per_case": 5,
+    "compile_repairs": []
+  },
+  "tokens": {
+    "full_chain": {
+      "model_calls": 137,
+      "input_tokens": 2263791,
+      "cache_read_input_tokens": 1809475,
+      "cache_creation_input_tokens": 226083,
+      "uncached_input_tokens": 228233,
+      "output_tokens": 88262
+    },
+    "workflow_local": {
+      "model_calls": 107,
+      "input_tokens": 1682061,
+      "cache_read_input_tokens": 1344031,
+      "cache_creation_input_tokens": 167928,
+      "uncached_input_tokens": 170102,
+      "output_tokens": 61657
+    },
+    "outer_session_by_subtraction": {
+      "model_calls": 30,
+      "input_tokens": 581730,
+      "cache_read_input_tokens": 465444,
+      "cache_creation_input_tokens": 58155,
+      "uncached_input_tokens": 58131,
+      "output_tokens": 26605
+    },
+    "request_accounting": {
+      "requests_received": 137,
+      "successful_requests": 137,
+      "usage_signals": 137,
+      "coverage_complete": true
+    },
+    "comparison_to_six_case_baseline": {
+      "baseline_full_chain_input_tokens": 3203051,
+      "input_reduction_fraction": 0.293238,
+      "baseline_full_chain_output_tokens": 148941,
+      "output_reduction_fraction": 0.407412
+    }
+  },
+  "follow_up": {
+    "strategy": "Keep the accepted one-final-Agent graph, but make multi-city collectors establish cross-category city viability before exposing route candidates and require verbatim preservation of ground official_string values."
+  },
+  "notes": [
+    "No answer was retried.",
+    "No network, authentication, rate-limit, or upstream 5xx error occurred.",
+    "The official evaluator was not run because the strict G2 output/quality gate had already failed."
+  ]
+}

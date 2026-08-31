@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "v6 token-efficient versioned prompt revision 7",
+    "method_commit_at_launch": "369c931",
+    "psi_agent_commit": "4dc1a86f6836f9a28e5de5ee563b8fd91260675a",
+    "gate": "G3",
+    "decision": "invalid_infrastructure_attempt",
+    "quality_evaluation_performed": false
+  },
+  "input_snapshot": {
+    "case_count": 46,
+    "manifest_sha256": "075bc7e690975db83fdb9000bc15046a974439cc15aece7d6d93cd21a5325469",
+    "prompts_sha256": "f9df689d6cea585f9748b8ffe2a689ed6018b63b53ee6bf2441e5ba63690f54a"
+  },
+  "attempt": {
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-token-efficient-prompt-r7-g3-46-20260831",
+    "terminated_by_operator": true,
+    "terminal_process_exit_code": 130,
+    "reusable_for_gate_decision": false,
+    "completed_case_ids": [1, 11, 14],
+    "interrupted_case_ids": [17]
+  },
+  "observations": [
+    {
+      "case_id": 1,
+      "classification": "completed",
+      "process_attempts": 1,
+      "workflow_detected": true
+    },
+    {
+      "case_id": 11,
+      "classification": "upstream_connection_failure",
+      "process_attempts": 2,
+      "evidence": "Both Session logs report [Upstream Error]: Connection error.",
+      "retry_policy_applied": "process_failures_only"
+    },
+    {
+      "case_id": 14,
+      "classification": "session_infrastructure_failure_misclassified_as_zero_exit_output_failure",
+      "process_attempts": 1,
+      "channel_exit_code": 0,
+      "evidence": "Session request incomplete: stop_cause=invalid_model_stream, model_finish_reason=None, model_turns=3",
+      "runner_effect": "The zero channel exit code prevented the infrastructure-only retry allowed by the preregistered policy."
+    },
+    {
+      "case_id": 17,
+      "classification": "operator_interrupted",
+      "included_in_quality_evaluation": false
+    }
+  ],
+  "runner_fix": {
+    "scope": "operational runner only",
+    "runner_path": "/public/home/sychen/cxy/workflow/blueprint/run_experiment.py",
+    "runner_sha256_after_fix": "2040b0b3b3e63a18310b87b8a63e1fe4ac8b8f86895a6622b5b60abb0845c068",
+    "test_path": "/public/home/sychen/cxy/workflow/blueprint/test_run_experiment.py",
+    "test_sha256_after_fix": "5571a8159890669c186264aa2da60b8f4a5dec092de80eaa6c205a4c5d0fda11",
+    "recognized_terminal_markers": [
+      "Session request incomplete:",
+      "Session request completed without a terminal result"
+    ],
+    "behavior": "A zero-exit channel call with an explicit new Session infrastructure terminal marker is converted to temporary process failure code 75 and receives only the infrastructure retry allowed by max-attempts.",
+    "non_retryable_failures_unchanged": [
+      "empty output without an explicit Session infrastructure marker",
+      "JSON parsing failure",
+      "output-contract failure",
+      "Workflow authoring or detection failure",
+      "validator failure",
+      "official evaluator failure"
+    ]
+  },
+  "verification": {
+    "python": "/public/home/sychen/cxy/workflow/psi-agent/.venv/bin/python",
+    "pythonpath": "/public/home/sychen/cxy/workflow/psi-agent-wt-token-efficiency-v1/src",
+    "py_compile_passed": true,
+    "blueprint_tests_passed": 34,
+    "blueprint_tests_failed": 0,
+    "covered_cases": [
+      "invalid_model_stream plus channel exit zero is process failure",
+      "completed without a terminal result is process failure",
+      "normal model-completed Session is not process failure",
+      "ordinary empty or unparseable output without a marker is not retried"
+    ]
+  },
+  "next_action": {
+    "run_directory_policy": "Start the full frozen 46-case G3 from the beginning in a new directory.",
+    "new_run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-token-efficient-prompt-r7-g3-46-r2-20260831",
+    "reuse_prior_answers": false
+  }
+}

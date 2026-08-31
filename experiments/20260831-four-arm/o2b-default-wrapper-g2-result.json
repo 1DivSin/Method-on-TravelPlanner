@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "O2b default Agent step wrapper trimming",
+    "psi_agent_commit": "9c30106e",
+    "baseline_commit": "54f55089b036badd1c56c57fff68190bbc34086d",
+    "decision": "rejected",
+    "failed_gate": "G2"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "manifest_sha256": "d9df9b18b733d7032f922aafd7a2113e70bc1eb0a8bb4ca6e71ad30b921e6794",
+    "prompt_sha256": "8994d711510a9a96ad5f1898b7e510d41f555fd1100c5d686e11940745d9f461",
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-o2b-canary6-20260831",
+    "runtime": "Python 3.14 with uvloop 0.22.1",
+    "completed_case_ids": [1, 48, 83],
+    "cancelled_case_ids": [116],
+    "not_started_case_ids": [138, 161],
+    "evaluator_run": false,
+    "stop_reason": "Case 116 repeated a non-infrastructure failed Workflow, then returned an empty plan and began authoring another Workflow."
+  },
+  "quality": {
+    "case_results": [
+      {
+        "case_id": 1,
+        "category": "completed_with_infrastructure_usage_gap",
+        "process_attempts": 1,
+        "workflow_detected": true,
+        "output_contract_passed": true,
+        "elapsed_seconds": 1615.0744102820754,
+        "summary": "The answer passed the output contract. One internal request received an upstream Cloudflare 524 and no usage, so the Workflow token report is incomplete."
+      },
+      {
+        "case_id": 48,
+        "category": "completed",
+        "process_attempts": 1,
+        "workflow_detected": true,
+        "output_contract_passed": true,
+        "elapsed_seconds": 1683.0304692019708,
+        "summary": "The repair replaced the conflicting flight with an exact self-driving candidate and the deterministic validator passed."
+      },
+      {
+        "case_id": 83,
+        "category": "completed",
+        "process_attempts": 1,
+        "workflow_detected": true,
+        "output_contract_passed": true,
+        "elapsed_seconds": 462.03394844708964,
+        "summary": "Restoring the complete textual output Artifact contract prevented the nested 'days' regression seen in O2."
+      },
+      {
+        "case_id": 116,
+        "category": "quality_and_reliability",
+        "process_attempts": 1,
+        "workflow_detected": true,
+        "output_contract_passed": false,
+        "retry_eligible": false,
+        "workflow_runs_before_stop": 2,
+        "summary": "The first Workflow failed when its repair Agent reached max_turns=12. The outer Agent immediately reran the same Workflow; the second run completed with an empty plan and the outer Agent began authoring another Workflow. This was not a network or process-infrastructure failure."
+      }
+    ]
+  },
+  "tokens": {
+    "observed_successful_calls": {
+      "model_calls": 186,
+      "input_tokens": 3234148,
+      "cache_read_input_tokens": 2587006,
+      "cache_creation_input_tokens": 323243,
+      "uncached_input_tokens": 323899,
+      "output_tokens": 121643
+    },
+    "request_accounting": {
+      "requests_received": 187,
+      "successful_requests": 186,
+      "usage_signals": 186,
+      "upstream_errors": 1,
+      "coverage_complete": false
+    },
+    "baseline_six_cases": {
+      "model_calls": 185,
+      "input_tokens": 3203051,
+      "output_tokens": 148941
+    },
+    "early_stop_comparison": {
+      "candidate_completed_fewer_than_six_cases": true,
+      "candidate_input_already_exceeded_full_six_case_baseline_by": 31097,
+      "candidate_model_calls_already_exceeded_full_six_case_baseline_by": 1
+    },
+    "case_116_repeated_workflows": {
+      "workflow_runs": 2,
+      "model_calls": 79,
+      "input_tokens": 1197105,
+      "output_tokens": 24628
+    }
+  },
+  "notes": [
+    "O2b preserved the complete input/output Artifact contract, submit schema, custom Agent wrapper, and format correction behavior.",
+    "The batch stopped as soon as the non-retryable duplicate-Workflow and empty-plan failure made G2 impossible to pass.",
+    "The observed candidate input exceeded the entire six-case baseline before case 116 finished and before cases 138 and 161 started, so O2b also could not pass the token gate.",
+    "O2b was explicitly reverted before starting the independently attributable duplicate-run prevention candidate."
+  ]
+}
