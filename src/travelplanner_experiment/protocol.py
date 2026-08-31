@@ -59,6 +59,8 @@ Field rules:
 Do not include any explanation outside the JSON code block.
 """
 
+WORKFLOW_ACTIVATION = "Please complete the task using workflow skill.\n\n"
+
 
 def render_prompt(case: Case) -> str:
     """Render the common contract while preserving the query's exact characters."""
@@ -68,3 +70,9 @@ def render_prompt(case: Case) -> str:
         query=case.query,
         query_json=json.dumps(case.query),
     )
+
+
+def render_workflow_prompt(case: Case) -> str:
+    """Prepend the one pre-registered Workflow activation to the common prompt."""
+
+    return WORKFLOW_ACTIVATION + render_prompt(case)
