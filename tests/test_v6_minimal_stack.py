@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).parents[1] / "src"))
 from travelplanner_experiment.protocol import (
     Case,
     V6_QUIET_AUTHORING_TREATMENT,
+    V6_SINGLE_CONSUMER_SEARCH_TREATMENT,
     render_prompt,
 )
 
@@ -30,6 +31,22 @@ class V6MinimalStackTest(unittest.TestCase):
             render_prompt(case, arm="no-workflow", variant="v6-token-efficient"),
             render_prompt(case, arm="no-workflow", variant="v6-min-01-quiet-authoring"),
         )
+
+    def test_single_consumer_search_builds_only_on_quiet_authoring(self):
+        case = Case("17", "Plan a trip from the official candidates.")
+        previous = render_prompt(case, arm="auto-workflow", variant="v6-min-01-quiet-authoring")
+        treated = render_prompt(
+            case, arm="auto-workflow", variant="v6-min-02-single-consumer-search"
+        )
+
+        expected = previous.replace(
+            "Please complete", V6_SINGLE_CONSUMER_SEARCH_TREATMENT + "Please complete", 1
+        )
+        self.assertEqual(treated, expected)
+        self.assertEqual(treated.count(V6_QUIET_AUTHORING_TREATMENT), 1)
+        self.assertEqual(treated.count(V6_SINGLE_CONSUMER_SEARCH_TREATMENT), 1)
+        self.assertIn("Preserve the complete source candidates", treated)
+        self.assertIn("separate compact derived Artifact", treated)
 
 
 if __name__ == "__main__":

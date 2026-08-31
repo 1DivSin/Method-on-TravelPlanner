@@ -162,6 +162,12 @@ V6_QUIET_AUTHORING_TREATMENT = """Registered treatment: quiet Workflow authoring
 
 """
 
+V6_SINGLE_CONSUMER_SEARCH_TREATMENT = """Registered treatment: single consumer for full search results.
+- Each full typed candidate Artifact produced by a TravelPlanner collector must have exactly one downstream Agent consumer: the final planning Agent. Preserve the complete source candidates in that Artifact; do not replay it through separate selection, assembly, validation, or repair Agents.
+- When staged collection needs availability or routing information, produce a separate compact derived Artifact for that dependency instead of attaching the full candidate payload to another Agent Step.
+
+"""
+
 
 def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
     """Render one registered treatment without reading host paths or secrets."""
@@ -196,6 +202,10 @@ def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
     v6_treatments = {
         "v6-token-efficient": (),
         "v6-min-01-quiet-authoring": (V6_QUIET_AUTHORING_TREATMENT,),
+        "v6-min-02-single-consumer-search": (
+            V6_QUIET_AUTHORING_TREATMENT,
+            V6_SINGLE_CONSUMER_SEARCH_TREATMENT,
+        ),
     }
     if variant.casefold() in v6_treatments:
         treatment = "".join(v6_treatments[variant.casefold()])
