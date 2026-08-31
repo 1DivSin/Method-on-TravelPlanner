@@ -38,3 +38,7 @@ records. Later stacked PRs change one registered treatment at a time.
 The first registered increment, `v6-min-01-quiet-authoring`, suppresses
 unrequested outer authoring narration while retaining the complete authoring
 and static-check process.
+
+The second increment, `v6-min-02-single-consumer-search`, keeps each complete
+TravelPlanner candidate Artifact with the final planner and routes only compact
+derived dependency data through any staging Step.
