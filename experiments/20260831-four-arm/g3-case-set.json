@@ -56,8 +56,8 @@
     "baseline_16_failures": "baseline-lock.json"
   },
   "query_policy": {
-    "cases_1_through_138": "Use idx/query from blueprint/.experiment-assets/v6-workflow-dw-cc8-138-20260828/prompt-queries.jsonl.",
-    "cases_139_through_180": "Use the original question from blueprint/cases-validation.jsonl.",
+    "cases_present_in_138_case_comparison_asset": "Use idx/query from blueprint/.experiment-assets/v6-workflow-dw-cc8-138-20260828/prompt-queries.jsonl.",
+    "cases_absent_from_138_case_comparison_asset": "Use the original question from blueprint/cases-validation.jsonl.",
     "reference_and_constraints": "Always use metadata from blueprint/cases-validation.jsonl."
   },
   "retry_policy": "Only network, rate-limit, upstream 5xx, and process-infrastructure failures may be retried. Quality, output-contract, Workflow authoring, validator, and evaluator failures are final."
