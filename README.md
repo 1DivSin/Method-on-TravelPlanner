@@ -34,3 +34,7 @@ the accepted v6 configuration. Its psi-agent runtime is pinned to
 This baseline deliberately excludes cache/token accounting changes, case
 selection, generated model sessions, evaluator results, and rejected treatment
 records. Later stacked PRs change one registered treatment at a time.
+
+The first registered increment, `v6-min-01-quiet-authoring`, suppresses
+unrequested outer authoring narration while retaining the complete authoring
+and static-check process.

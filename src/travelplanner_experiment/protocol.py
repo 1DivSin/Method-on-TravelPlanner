@@ -156,6 +156,12 @@ V6_TOKEN_EFFICIENT_CONTRACT = """Token-efficient Workflow contract (quality rule
 
 """
 
+V6_QUIET_AUTHORING_TREATMENT = """Registered treatment: quiet Workflow authoring.
+- After any necessary clarification, use the authoring tools directly. Do not narrate reasoning, alternative graph designs, syntax reconstruction, self-checks, edits, or retries.
+- Perform every authoring and static-check operation in full. Before `run_flow`, emit only the Workflow skill's existing short execution notice.
+
+"""
+
 
 def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
     """Render one registered treatment without reading host paths or secrets."""
@@ -187,8 +193,13 @@ def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
         return V5_TYPED_CANDIDATE_CONTRACT + V5_VALIDATION_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
             idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
         )
-    if variant.casefold() == "v6-token-efficient":
-        return V6_TOKEN_EFFICIENT_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
+    v6_treatments = {
+        "v6-token-efficient": (),
+        "v6-min-01-quiet-authoring": (V6_QUIET_AUTHORING_TREATMENT,),
+    }
+    if variant.casefold() in v6_treatments:
+        treatment = "".join(v6_treatments[variant.casefold()])
+        return V6_TOKEN_EFFICIENT_CONTRACT + treatment + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
             idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
         )
     treatments = {"v1": WORKFLOW_V1, "v2": WORKFLOW_V2, "v3": WORKFLOW_V3}
