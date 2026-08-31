@@ -3,7 +3,14 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from travelplanner_experiment import Case, load_cases, render_prompt, select_cases
+from travelplanner_experiment import (
+    Case,
+    load_cases,
+    render_prompt,
+    render_workflow_prompt,
+    select_cases,
+)
+from travelplanner_experiment.protocol import WORKFLOW_ACTIVATION
 
 
 class TravelPlannerContractTest(unittest.TestCase):
@@ -22,6 +29,16 @@ class TravelPlannerContractTest(unittest.TestCase):
         self.assertEqual(
             hashlib.sha256(prompt).hexdigest(),
             "b48b9a4caeba791e1c31fb319202f8b1c5d56107e54d2a741a129714d6aaf40a",
+        )
+
+    def test_activation_is_the_only_workflow_prompt_difference(self):
+        case = Case(7, 'Plan for "two" without rewriting this query.')
+        common = render_prompt(case)
+
+        self.assertEqual(render_workflow_prompt(case), WORKFLOW_ACTIVATION + common)
+        self.assertEqual(
+            WORKFLOW_ACTIVATION,
+            "Please complete the task using workflow skill.\n\n",
         )
 
     def test_loader_validates_only_frozen_prompt_row_schema(self):

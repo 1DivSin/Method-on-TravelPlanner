@@ -20,8 +20,15 @@ and the common task/output contract.
 ## Frozen harness contract
 
 Every comparison arm must receive the same rendered task contract and the same
-official data tools. A treatment activation belongs in a separate,
-pre-registered commit so it remains the only arm difference.
+official data tools. The Workflow arm differs only by this pre-registered
+activation text:
+
+```text
+Please complete the task using workflow skill.
+```
+
+`render_workflow_prompt` prepends those exact bytes to the common prompt. It
+has no variant, environment, or runtime selector.
 
 The repository does not reimplement the official tool adapter. Before a run,
 the caller must register the external adapter revision, adapter file hash,
