@@ -141,6 +141,21 @@ V5_VALIDATION_CONTRACT = """Accuracy treatment: deterministic validation and tar
 
 """
 
+V6_TOKEN_EFFICIENT_CONTRACT = """Token-efficient Workflow contract (quality rules remain mandatory):
+- Read the Workflow Skill and grammar once, then author and run exactly one dynamic Workflow.
+- Author valid FusionFlow on the first attempt: declare every Step and Agent as separate constants; make the Workflow constant/owner exactly match the identifier after `workflow`; bind each Step with `step_executor(step) == agent`; and grant each tool with one scalar statement such as `allowed_tool(agent, "search_flights");`. Never combine Step and Agent types, attach `allowed_tool` to a Step, use equality/list syntax for it, or pass a list as its tool argument. Do not use `agent_config` in this trial; every Agent inherits the configured runtime model. (`agent_config` has four arguments, so a one-argument model shortcut is invalid.)
+- Keep independent typed candidate collection parallel. Preserve canonical source fields and pass every accommodation pre-filter argument.
+- For a state or multi-city request, no collector may lock in the final cities or route before cross-category viability is known. Discover the official cities once, then collect lodging, dining, attraction, and transport availability over a common city pool. Stage collectors when useful so transport candidates cover only cities with enough candidates in every required resource category, but return multiple feasible routes when possible; the single final planning Agent alone selects the cities and route. Never select a city with empty required lodging, restaurant, or attraction candidates, and never use `-` to conceal missing city support.
+- Transport collectors must preserve each ground candidate's canonical `official_string`, and the final planning Agent must copy it verbatim into `transportation`. Never summarize or reconstruct a ground-transport string. Every feasible route must contain a real candidate for every travel leg: origin to the first city, all inter-city legs, and the last city back to origin. For each leg, search the requested/appropriate primary mode and, when it is unavailable or alternatives are allowed, call `compute_distance` for both self-driving and taxi; this requirement includes both origin endpoint legs. Never put a partial route in the feasible-routes Artifact, and never fabricate a missing endpoint leg during planning or repair.
+- Use one final planning Agent Step that consumes the original typed candidate Artifacts. That same Step must assemble the complete `{idx, query, plan}`, call `validate_travel_plan`, and submit the exact validated object unchanged when valid.
+- Treat the `query` string in the required output example below as an immutable canonical value. Copy it byte-for-byte into every Workflow input, Step instruction, validation payload, fallback object, and final output; never append or prepend inferred metadata such as the case index or traveler count.
+- The complete object must have exactly the top-level keys `idx`, `query`, and `plan`. Every plan entry must have exactly these eight keys and no others: `day`, `current_city`, `transportation`, `breakfast`, `attraction`, `lunch`, `dinner`, and `accommodation`. The singular `day` key is mandatory; `days` and every other extra or misspelled key are forbidden.
+- Only when the validator reports invalid, repair the reported fields from the original typed candidates, validate exactly once more, and submit the repaired object only when valid. If the second validation is invalid, submit exactly `{"idx": <case idx>, "query": <exact original query>, "plan": []}`. Never submit placeholder or fabricated day entries in this failure object. A field-name repair must replace or rename the invalid field and delete the old key, not merely add the corrected key. Before each validation and before submission, enforce the exact key sets above.
+- Do not create separate selection, assembly, validator, pass-through, or repair Agent Steps. Those boundaries repeat the same candidate context and can alter an already validated object.
+- After run_flow returns, emit its final Artifact unchanged. Do not reselect, rewrite fields, or add narration.
+
+"""
+
 
 def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
     """Render one registered treatment without reading host paths or secrets."""
@@ -170,6 +185,10 @@ def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
         )
     if variant.casefold() == "v5-validated":
         return V5_TYPED_CANDIDATE_CONTRACT + V5_VALIDATION_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
+            idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
+        )
+    if variant.casefold() == "v6-token-efficient":
+        return V6_TOKEN_EFFICIENT_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
             idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
         )
     treatments = {"v1": WORKFLOW_V1, "v2": WORKFLOW_V2, "v3": WORKFLOW_V3}

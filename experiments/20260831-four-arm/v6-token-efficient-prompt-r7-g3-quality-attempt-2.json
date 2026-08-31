@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "v6 token-efficient versioned prompt revision 7",
+    "method_commit_at_launch": "6dc0ac0",
+    "psi_agent_commit": "4dc1a86f6836f9a28e5de5ee563b8fd91260675a",
+    "gate": "G3",
+    "decision": "rejected_output_contract",
+    "quality_evaluation_performed": false
+  },
+  "input_snapshot": {
+    "case_count": 46,
+    "manifest_sha256": "075bc7e690975db83fdb9000bc15046a974439cc15aece7d6d93cd21a5325469",
+    "prompts_sha256": "f9df689d6cea585f9748b8ffe2a689ed6018b63b53ee6bf2441e5ba63690f54a"
+  },
+  "attempt": {
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-token-efficient-prompt-r7-g3-46-r2-20260831",
+    "terminated_by_operator": true,
+    "terminal_process_exit_code": 130,
+    "reusable_for_gate_decision": false,
+    "completed_case_ids": [1, 11],
+    "interrupted_case_ids": [14],
+    "not_started_case_count": 43
+  },
+  "observations": [
+    {
+      "case_id": 1,
+      "classification": "completed",
+      "process_attempts": 1,
+      "workflow_detected": true,
+      "strict_local_output_contract_passed": true
+    },
+    {
+      "case_id": 11,
+      "classification": "output_contract_failure",
+      "process_attempts": 1,
+      "workflow_detected": true,
+      "strict_local_output_contract_passed": false,
+      "validation_error": "top-level query must exactly reproduce the user query",
+      "canonical_query": "Please create a travel plan departing from Minneapolis and heading to Seattle for 3 days, from March 29th to March 31st, 2022, with a budget of $1,800.",
+      "returned_query": "Please create a travel plan departing from Minneapolis and heading to Seattle for 3 days, from March 29th to March 31st, 2022, with a budget of $1,800. Case idx is 11. One traveler.",
+      "retry_performed": false
+    },
+    {
+      "case_id": 14,
+      "classification": "operator_interrupted_after_quality_gate_failure",
+      "included_in_quality_evaluation": false
+    }
+  ],
+  "root_cause": {
+    "component": "versioned Workflow treatment prompt",
+    "evidence": "The outer Agent appended the case index and inferred traveler count when constructing run_flow inputs_json. The final planning Step and validator then preserved that expanded value.",
+    "validator_mutated_query": false,
+    "network_or_process_failure": false
+  },
+  "revision_8_fix": {
+    "scope": "minimal prompt contract clarification",
+    "behavior": "The query string shown in the required output example is immutable and must be copied byte-for-byte through Workflow input, Step instruction, validation payload, fallback object, and final output. Inferred metadata must never be appended or prepended.",
+    "method_files": [
+      "src/travelplanner_experiment/protocol.py",
+      "tests/test_validator.py"
+    ],
+    "operational_runner": "/public/home/sychen/cxy/workflow/blueprint/run_experiment.py",
+    "operational_runner_sha256": "94fb39ee4981dea1fee0be5b65edc173fc7d99465857c2eca2025125c2bb2761",
+    "operational_test_sha256": "93f2a47a785d227c7f5436cd11aad81df06bb1724246c59f81b73b6b692d21c5",
+    "unrelated_prompt_or_runtime_changes": false
+  },
+  "verification": {
+    "method_tests_passed": 34,
+    "method_tests_failed": 0,
+    "blueprint_tests_passed": 35,
+    "blueprint_tests_failed": 0,
+    "py_compile_passed": true
+  },
+  "next_action": {
+    "candidate": "v6 token-efficient versioned prompt revision 8",
+    "run_directory_policy": "Start the full frozen 46-case G3 from the beginning in a new directory.",
+    "new_run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-token-efficient-prompt-r8-g3-46-20260831",
+    "reuse_prior_answers": false
+  }
+}

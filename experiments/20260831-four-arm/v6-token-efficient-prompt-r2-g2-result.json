@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "v6 token-efficient versioned prompt revision 2",
+    "method_commit": "f35162a",
+    "psi_agent_commit": "4dc1a86f6836f9a28e5de5ee563b8fd91260675a",
+    "decision": "rejected",
+    "failed_gate": "G2 token-efficiency precheck"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-token-efficient-prompt-r2-canary6-20260831",
+    "completed_case_ids": [1],
+    "cancelled_case_ids": [48],
+    "not_started_case_ids": [83, 116, 138, 161],
+    "evaluator_run": false,
+    "stop_reason": "Case 1 required three deterministic FusionFlow authoring repairs before execution, adding avoidable outer-session input/output tokens."
+  },
+  "quality": {
+    "case_1": {
+      "output_contract_passed": true,
+      "internal_validation_passed": true,
+      "validation_calls": 1,
+      "exact_day_key_contract_passed": true,
+      "workflow_agent_steps": 6
+    },
+    "case_48": {
+      "status": "cancelled_before_workflow_authoring_completed",
+      "retry_eligible": false
+    }
+  },
+  "authoring": {
+    "workflow_structure_adopted": true,
+    "compile_repairs": [
+      "Step and Agent were first combined in the same declarations and Step executors were invalid.",
+      "allowed_tool was then written with equality and list syntax.",
+      "allowed_tool was then called with a list-valued second argument instead of a scalar tool constant."
+    ],
+    "final_valid_form": "Separate Step/Agent constants, step_executor(step) == agent, and one allowed_tool(agent, string) statement per tool."
+  },
+  "tokens": {
+    "observed_successful_calls": {
+      "model_calls": 25,
+      "input_tokens": 438774,
+      "cache_read_input_tokens": 345954,
+      "cache_creation_input_tokens": 43225,
+      "uncached_input_tokens": 49595,
+      "output_tokens": 18016
+    },
+    "request_accounting": {
+      "requests_received": 26,
+      "successful_requests": 25,
+      "usage_signals": 25,
+      "cancelled_in_flight_requests": 1,
+      "coverage_complete": false
+    },
+    "completed_case_1_workflow": {
+      "model_calls": 12,
+      "input_tokens": 126268,
+      "cache_read_input_tokens": 100340,
+      "cache_creation_input_tokens": 12533,
+      "uncached_input_tokens": 13395,
+      "output_tokens": 4358
+    }
+  },
+  "follow_up": {
+    "strategy": "Preserve the accepted graph and exact output-key contract, while adding only the confirmed FusionFlow declaration and allowed_tool syntax to the versioned prompt."
+  },
+  "notes": [
+    "No quality failure caused this stop, and no model answer was retried.",
+    "No network, rate-limit, or upstream 5xx error occurred.",
+    "The partial full-chain totals include the start of case 48 and one cancelled request, so they are not formal one-case or six-case totals."
+  ]
+}
