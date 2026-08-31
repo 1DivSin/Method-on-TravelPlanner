@@ -102,6 +102,11 @@ class ValidatorTest(unittest.TestCase):
         self.assertIn("Never combine Step and Agent types", prompt)
         self.assertIn('`{"idx": <case idx>, "query": <exact original query>, "plan": []}`', prompt)
         self.assertIn("Never submit placeholder or fabricated day entries", prompt)
+        self.assertIn("no collector may lock in the final cities or route", prompt)
+        self.assertIn("the single final planning Agent alone selects the cities and route", prompt)
+        self.assertIn("Never select a city with empty required lodging, restaurant, or attraction candidates", prompt)
+        self.assertIn("copy it verbatim into `transportation`", prompt)
+        self.assertIn("Never summarize or reconstruct a ground-transport string", prompt)
 
 
 if __name__ == "__main__":
