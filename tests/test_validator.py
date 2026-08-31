@@ -107,6 +107,9 @@ class ValidatorTest(unittest.TestCase):
         self.assertIn("Never select a city with empty required lodging, restaurant, or attraction candidates", prompt)
         self.assertIn("copy it verbatim into `transportation`", prompt)
         self.assertIn("Never summarize or reconstruct a ground-transport string", prompt)
+        self.assertIn("origin to the first city, all inter-city legs, and the last city back to origin", prompt)
+        self.assertIn("this requirement includes both origin endpoint legs", prompt)
+        self.assertIn("Never put a partial route in the feasible-routes Artifact", prompt)
 
 
 if __name__ == "__main__":
