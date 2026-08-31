@@ -42,3 +42,6 @@ and static-check process.
 The second increment, `v6-min-02-single-consumer-search`, keeps each complete
 TravelPlanner candidate Artifact with the final planner and routes only compact
 derived dependency data through any staging Step.
+
+The third increment, `v6-min-03-conditional-repair`, makes a passing validator
+decision terminal and permits one targeted repair only after a failed decision.

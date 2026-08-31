@@ -6,6 +6,7 @@ sys.path.insert(0, str(Path(__file__).parents[1] / "src"))
 
 from travelplanner_experiment.protocol import (
     Case,
+    V6_CONDITIONAL_REPAIR_TREATMENT,
     V6_QUIET_AUTHORING_TREATMENT,
     V6_SINGLE_CONSUMER_SEARCH_TREATMENT,
     render_prompt,
@@ -47,6 +48,24 @@ class V6MinimalStackTest(unittest.TestCase):
         self.assertEqual(treated.count(V6_SINGLE_CONSUMER_SEARCH_TREATMENT), 1)
         self.assertIn("Preserve the complete source candidates", treated)
         self.assertIn("separate compact derived Artifact", treated)
+
+    def test_conditional_repair_builds_only_on_single_consumer_treatment(self):
+        case = Case("17", "Plan and validate a trip.")
+        previous = render_prompt(
+            case, arm="auto-workflow", variant="v6-min-02-single-consumer-search"
+        )
+        treated = render_prompt(
+            case, arm="auto-workflow", variant="v6-min-03-conditional-repair"
+        )
+
+        expected = previous.replace(
+            "Please complete", V6_CONDITIONAL_REPAIR_TREATMENT + "Please complete", 1
+        )
+        self.assertEqual(treated, expected)
+        self.assertEqual(treated.count(V6_CONDITIONAL_REPAIR_TREATMENT), 1)
+        self.assertIn("When `valid` is true, submit that exact object immediately and stop", treated)
+        self.assertIn("Only when `valid` is false", treated)
+        self.assertIn("validate once more", treated)
 
 
 if __name__ == "__main__":
