@@ -168,6 +168,12 @@ V6_SINGLE_CONSUMER_SEARCH_TREATMENT = """Registered treatment: single consumer f
 
 """
 
+V6_CONDITIONAL_REPAIR_TREATMENT = """Registered treatment: repair only after a failed deterministic validation.
+- The final planning Agent must validate the complete object first. When `valid` is true, submit that exact object immediately and stop; do not execute repair logic or create a repair Step on the valid path.
+- Only when `valid` is false may the same final planning Agent change reported fields once and validate once more. No other candidate selection or full-payload replay is permitted during repair.
+
+"""
+
 
 def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
     """Render one registered treatment without reading host paths or secrets."""
@@ -205,6 +211,11 @@ def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
         "v6-min-02-single-consumer-search": (
             V6_QUIET_AUTHORING_TREATMENT,
             V6_SINGLE_CONSUMER_SEARCH_TREATMENT,
+        ),
+        "v6-min-03-conditional-repair": (
+            V6_QUIET_AUTHORING_TREATMENT,
+            V6_SINGLE_CONSUMER_SEARCH_TREATMENT,
+            V6_CONDITIONAL_REPAIR_TREATMENT,
         ),
     }
     if variant.casefold() in v6_treatments:
