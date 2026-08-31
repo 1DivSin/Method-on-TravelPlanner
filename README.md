@@ -45,3 +45,8 @@ derived dependency data through any staging Step.
 
 The third increment, `v6-min-03-conditional-repair`, makes a passing validator
 decision terminal and permits one targeted repair only after a failed decision.
+
+The fourth increment, `v6-min-04-step-protocol-dedup`, keeps the layer-three
+prompt byte-identical and switches only the pinned psi-agent runtime to
+`ff4f605a65092f90fc7e49f2b726e6d81d2d5e9b`. The corresponding standard patch
+is stored under `patches/psi-agent/` with a registered SHA-256 digest.
