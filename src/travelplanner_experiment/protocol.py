@@ -126,6 +126,13 @@ Field rules:
 Do not include any explanation outside the JSON code block.
 """
 
+V5_TYPED_CANDIDATE_CONTRACT = """Accuracy treatment: candidate contracts and pre-filtering.
+- Search Steps must return structured candidate arrays with canonical source fields, never raw tables or prose.
+- Accommodation searches must pass required_nights, travelers, required_room_type, and required_house_rule so invalid lodging is filtered before selection.
+- Selection and assembly may choose only members of the typed candidate Artifacts.
+
+"""
+
 
 def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
     """Render one registered treatment without reading host paths or secrets."""
@@ -148,6 +155,10 @@ def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
             idx=json.dumps(idx),
             query=case.query,
             query_json=json.dumps(case.query),
+        )
+    if variant.casefold() == "v5-typed-candidates":
+        return V5_TYPED_CANDIDATE_CONTRACT + CC_DYNAMIC_WORKFLOW_PROMPT_TEMPLATE.format(
+            idx=json.dumps(idx), query=case.query, query_json=json.dumps(case.query)
         )
     treatments = {"v1": WORKFLOW_V1, "v2": WORKFLOW_V2, "v3": WORKFLOW_V3}
     try:
