@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "O1 progressive Workflow Skill disclosure",
+    "psi_agent_commit": "cfe89241",
+    "baseline_commit": "54f55089b036badd1c56c57fff68190bbc34086d",
+    "decision": "rejected",
+    "failed_gate": "G2"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "manifest_sha256": "d9df9b18b733d7032f922aafd7a2113e70bc1eb0a8bb4ca6e71ad30b921e6794",
+    "prompt_sha256": "8994d711510a9a96ad5f1898b7e510d41f555fd1100c5d686e11940745d9f461",
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-o1-canary6-r2-20260831",
+    "evaluator_directory": "/public/home/sychen/cxy/workflow/blueprint/.eval-v6-o1-canary6-r2-20260831",
+    "process_attempts_per_case": 1,
+    "model_requests": 205,
+    "completed_model_requests": 205,
+    "usage_signals": 205,
+    "usage_coverage_complete": true
+  },
+  "quality": {
+    "final_pass": {
+      "passed": 5,
+      "total": 6,
+      "rate": 0.8333333333333334
+    },
+    "delivery_rate": 0.8333333333333334,
+    "commonsense_constraint_micro_pass_rate": 0.8333333333333334,
+    "commonsense_constraint_macro_pass_rate": 0.8333333333333334,
+    "hard_constraint_micro_pass_rate": 0.9285714285714286,
+    "hard_constraint_macro_pass_rate": 0.8333333333333334,
+    "failed_case_ids": [48],
+    "failure": {
+      "case_id": 48,
+      "category": "quality",
+      "retry_eligible": false,
+      "summary": "The draft mixed flight and self-driving modes. Repair removed required day-1 transportation instead of replacing it with a compatible concrete route, so the deterministic validator rejected the repair and the Workflow returned an empty plan."
+    }
+  },
+  "tokens": {
+    "baseline": {
+      "model_calls": 185,
+      "processed_input_tokens": 3203051,
+      "output_tokens": 148941
+    },
+    "candidate": {
+      "model_calls": 205,
+      "processed_input_tokens": 4041019,
+      "output_tokens": 177140
+    },
+    "relative_change": {
+      "model_calls": 0.10810810810810811,
+      "processed_input_tokens": 0.26161556590887874,
+      "output_tokens": 0.18933000315561196
+    }
+  },
+  "notes": [
+    "The first canary run prepared an already normalized manifest a second time and is explicitly invalid; it is excluded from this result.",
+    "O1 was reverted in a later psi-agent commit before work on the next independently attributable candidate."
+  ]
+}

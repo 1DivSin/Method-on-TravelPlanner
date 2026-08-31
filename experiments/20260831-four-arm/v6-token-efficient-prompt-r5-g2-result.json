@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "v6 token-efficient versioned prompt revision 5",
+    "method_commit": "a3d0668",
+    "psi_agent_commit": "4dc1a86f6836f9a28e5de5ee563b8fd91260675a",
+    "decision": "rejected",
+    "failed_gate": "G2 quality and output contract"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-token-efficient-prompt-r5-canary6-20260831",
+    "completed_case_ids": [1, 48, 83],
+    "failed_case_ids": [116],
+    "cancelled_case_ids": [138],
+    "not_started_case_ids": [161],
+    "evaluator_run": false,
+    "stop_reason": "Case 116 found three cross-category viable cities but its transport collector omitted Provo-to-first-city and last-city-to-Provo ground candidates after endpoint flight searches were empty. The second deterministic validation rejected reconstructed endpoint strings, so the Workflow correctly returned the required empty-plan object. The run was stopped immediately after the non-retryable quality failure."
+  },
+  "quality": {
+    "cases_1_48_83": {
+      "output_contract_passed": true,
+      "strict_day_key_contract_passed": true,
+      "attempts_each": 1
+    },
+    "case_116": {
+      "output_contract_passed": false,
+      "runner_error": "plan must be a non-empty list",
+      "validation_calls": 2,
+      "first_validation_violations": [
+        "transportation.required on day 1",
+        "transportation.required on day 7"
+      ],
+      "second_validation_violations": [
+        "membership.ground_transport on day 1",
+        "membership.ground_transport on day 7"
+      ],
+      "empty_plan_fallback_exact": true,
+      "retry_eligible": false,
+      "root_cause": "The transport contract required ground alternatives for inter-city pairs but not explicitly for the two origin endpoint legs."
+    }
+  },
+  "authoring": {
+    "first_authored_workflows_compiled": true,
+    "writes_per_completed_case": 1,
+    "run_flow_calls_per_completed_case": 1,
+    "outer_model_turns_per_completed_case": 5,
+    "compile_repairs": []
+  },
+  "tokens": {
+    "partial_full_chain": {
+      "model_calls": 79,
+      "input_tokens": 1256503,
+      "cache_read_input_tokens": 1004010,
+      "cache_creation_input_tokens": 124640,
+      "uncached_input_tokens": 127853,
+      "output_tokens": 53669
+    },
+    "completed_workflows_local": {
+      "model_calls": 57,
+      "input_tokens": 829184,
+      "cache_read_input_tokens": 661021,
+      "cache_creation_input_tokens": 81786,
+      "uncached_input_tokens": 86377,
+      "output_tokens": 34565
+    },
+    "request_accounting": {
+      "requests_received": 80,
+      "successful_requests": 79,
+      "usage_signals": 79,
+      "cancelled_in_flight_requests": 1,
+      "coverage_complete": false
+    }
+  },
+  "follow_up": {
+    "strategy": "Require a candidate-backed origin endpoint, every inter-city leg, and a candidate-backed return endpoint before a route may be marked feasible; explicitly search both ground modes for endpoint fallback."
+  },
+  "notes": [
+    "No answer was retried.",
+    "No network, authentication, rate-limit, or upstream 5xx error occurred.",
+    "The partial full-chain totals include the beginning and cancellation of case 138.",
+    "The official evaluator was not run because the strict G2 output/quality gate had already failed."
+  ]
+}

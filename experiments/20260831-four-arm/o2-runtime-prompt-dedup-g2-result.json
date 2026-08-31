@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "O2 runtime prompt and submit schema deduplication",
+    "psi_agent_commit": "c6ecd153",
+    "baseline_commit": "54f55089b036badd1c56c57fff68190bbc34086d",
+    "decision": "rejected",
+    "failed_gate": "G2"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "manifest_sha256": "d9df9b18b733d7032f922aafd7a2113e70bc1eb0a8bb4ca6e71ad30b921e6794",
+    "prompt_sha256": "8994d711510a9a96ad5f1898b7e510d41f555fd1100c5d686e11940745d9f461",
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-o2-canary6-r2-20260831",
+    "runtime": "Python 3.14 with uvloop 0.22.1",
+    "completed_case_ids": [1, 48, 83],
+    "cancelled_case_ids": [116],
+    "not_started_case_ids": [138, 161],
+    "evaluator_run": false,
+    "stop_reason": "A non-retryable output-contract regression made G2 impossible to pass."
+  },
+  "quality": {
+    "case_results": [
+      {
+        "case_id": 1,
+        "category": "completed",
+        "process_attempts": 1,
+        "workflow_detected": true,
+        "output_contract_passed": true
+      },
+      {
+        "case_id": 48,
+        "category": "infrastructure",
+        "process_attempts": 3,
+        "workflow_detected": false,
+        "output_contract_passed": false,
+        "retry_eligible": true,
+        "summary": "All three attempts failed on the first model request during one upstream connection-error window and reported no usage."
+      },
+      {
+        "case_id": 83,
+        "category": "quality",
+        "process_attempts": 2,
+        "workflow_detected": true,
+        "output_contract_passed": false,
+        "retry_eligible": false,
+        "validation_errors": ["day 1 has unexpected keys ['days']"],
+        "summary": "The Workflow completed and its deterministic validator reported valid, but the final Artifact added a nested day-1 'days' key. Removing the textual output Artifact contract left this nested rule outside the top-level submit_step_result JSON schema."
+      },
+      {
+        "case_id": 116,
+        "category": "gate_cancelled",
+        "process_attempts": 1,
+        "workflow_detected": true,
+        "output_contract_passed": false,
+        "retry_eligible": false,
+        "summary": "The active request and Workflow were cancelled after case 83 made G2 impossible to pass."
+      }
+    ]
+  },
+  "tokens": {
+    "observed_successful_calls": {
+      "model_calls": 66,
+      "input_tokens": 1216482,
+      "cache_read_input_tokens": 978692,
+      "cache_creation_input_tokens": 122284,
+      "uncached_input_tokens": 115506,
+      "output_tokens": 63981
+    },
+    "request_accounting": {
+      "requests_received": 71,
+      "successful_requests": 66,
+      "usage_signals": 66,
+      "upstream_connection_errors": 4,
+      "cancelled_in_flight_requests": 1,
+      "coverage_complete": false
+    },
+    "completed_workflows": {
+      "workflow_runs": 2,
+      "model_calls": 38,
+      "input_tokens": 465216,
+      "cache_read_input_tokens": 374539,
+      "cache_creation_input_tokens": 46790,
+      "uncached_input_tokens": 43887,
+      "output_tokens": 18235
+    },
+    "completed_case_observations": [
+      {
+        "case_id": 1,
+        "model_calls": 30,
+        "input_tokens": 470624,
+        "cache_read_input_tokens": 378967,
+        "cache_creation_input_tokens": 47348,
+        "uncached_input_tokens": 44309,
+        "output_tokens": 20712
+      },
+      {
+        "case_id": 83,
+        "model_calls": 26,
+        "input_tokens": 452931,
+        "cache_read_input_tokens": 363911,
+        "cache_creation_input_tokens": 45469,
+        "uncached_input_tokens": 43551,
+        "output_tokens": 23857
+      }
+    ]
+  },
+  "notes": [
+    "The initial O2 service-start run is retained separately at .runs-v6-o2-canary6-20260831; it made zero model requests and exposed a host Python 3.14 asyncio thread-bridge failure.",
+    "The corrected run used an uncommitted uvloop wrapper only as an infrastructure workaround; the wrapper is not part of either repository.",
+    "The batch stopped immediately after the non-retryable case-83 contract failure was confirmed, so no evaluator or six-case token comparison was performed.",
+    "O2 was reverted before creating the narrower O2b candidate, which preserves the complete textual output Artifact contract."
+  ]
+}

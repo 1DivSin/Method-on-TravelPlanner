@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "O8 Skill-only validation and repair colocation",
+    "psi_agent_commit": "7c2d83ea",
+    "baseline_commit": "54f55089b036badd1c56c57fff68190bbc34086d",
+    "decision": "rejected",
+    "failed_gate": "G2 adoption"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "manifest_sha256": "d9df9b18b733d7032f922aafd7a2113e70bc1eb0a8bb4ca6e71ad30b921e6794",
+    "prompt_sha256": "8994d711510a9a96ad5f1898b7e510d41f555fd1100c5d686e11940745d9f461",
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-o8-colocated-validation-canary6-20260831",
+    "completed_case_ids": [],
+    "cancelled_case_ids": [1, 48],
+    "not_started_case_ids": [83, 116, 138, 161],
+    "evaluator_run": false,
+    "stop_reason": "The authored case-1 graph retained separate assembly, validator, and repair Agents, so the candidate produced no structural token optimization."
+  },
+  "adoption": {
+    "expected": "One deciding Agent constructs, validates, conditionally repairs, revalidates, and emits the final plan.",
+    "observed": "Separate assemble_plan, validate_plan, and repair_plan Agent Steps.",
+    "workflow_agent_steps": 7,
+    "colocated_finalizer_steps": 0,
+    "root_cause": "The v4 experiment prompt has higher-priority explicit requirements for a validator Agent Step followed by a sequential repair Step, which conflict with the Skill-only candidate."
+  },
+  "tokens": {
+    "observed_successful_calls": {
+      "model_calls": 23,
+      "input_tokens": 360052,
+      "cache_read_input_tokens": 291356,
+      "cache_creation_input_tokens": 36402,
+      "uncached_input_tokens": 32294,
+      "output_tokens": 14050
+    },
+    "request_accounting": {
+      "requests_received": 24,
+      "successful_requests": 23,
+      "usage_signals": 23,
+      "cancelled_in_flight_requests": 1,
+      "coverage_complete": false
+    },
+    "completed_workflows": {
+      "workflow_runs": 1,
+      "model_calls": 12,
+      "input_tokens": 126524,
+      "cache_read_input_tokens": 102263,
+      "cache_creation_input_tokens": 12775,
+      "uncached_input_tokens": 11486,
+      "output_tokens": 4415
+    },
+    "observed_outer_residual": {
+      "model_calls": 11,
+      "input_tokens": 233528,
+      "cache_read_input_tokens": 189093,
+      "cache_creation_input_tokens": 23627,
+      "uncached_input_tokens": 20808,
+      "output_tokens": 9635
+    }
+  },
+  "verification": {
+    "workflow_tests_passed": 18,
+    "ruff_passed": true,
+    "diff_check_passed": true,
+    "authoring_contract_start_byte": 15896,
+    "authoring_contract_end_byte": 16953
+  },
+  "notes": [
+    "The candidate was stopped on structural non-adoption rather than allowed to spend the full six-case budget.",
+    "The same prompt conflict also explains O4/O4b non-adoption: v4 says TravelPlanner tools are callable only by Agent Steps.",
+    "The next candidate must be a versioned experiment prompt treatment rather than another Skill-only instruction."
+  ]
+}

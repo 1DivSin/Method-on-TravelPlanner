@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "v6 token-efficient versioned prompt revision 1",
+    "method_commit": "0ad42ef",
+    "psi_agent_commit": "4dc1a86f6836f9a28e5de5ee563b8fd91260675a",
+    "baseline_commit": "54f55089b036badd1c56c57fff68190bbc34086d",
+    "decision": "rejected",
+    "failed_gate": "G2 output contract"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "manifest_sha256": "d9df9b18b733d7032f922aafd7a2113e70bc1eb0a8bb4ca6e71ad30b921e6794",
+    "prompt_sha256": "8994d711510a9a96ad5f1898b7e510d41f555fd1100c5d686e11940745d9f461",
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-token-efficient-prompt-canary6-20260831",
+    "completed_case_ids": [1, 48],
+    "cancelled_case_ids": [83],
+    "not_started_case_ids": [116, 138, 161],
+    "evaluator_run": false,
+    "stop_reason": "Case 48 retained an extra days key in every day object after targeted repair, which is a non-retryable strict output-contract failure."
+  },
+  "quality": {
+    "case_results": [
+      {
+        "case_id": 1,
+        "category": "completed_pending_official_evaluator",
+        "process_attempts": 1,
+        "workflow_detected": true,
+        "output_contract_passed": true,
+        "internal_validation_passed": true,
+        "internal_validation_calls": 1,
+        "workflow_agent_steps": 6,
+        "summary": "Five typed candidate collectors ran in parallel and one final planning Agent assembled, validated, and submitted the exact plan."
+      },
+      {
+        "case_id": 48,
+        "category": "output_contract",
+        "process_attempts": 1,
+        "workflow_detected": true,
+        "output_contract_passed": false,
+        "retry_eligible": false,
+        "internal_validation_passed": true,
+        "internal_validation_calls": 2,
+        "validation_errors": [
+          "days 1 through 7 have unexpected key ['days']"
+        ],
+        "workflow_agent_steps": 5,
+        "summary": "The first validation reported missing day fields because the draft used days. The repair added day but retained days. The second internal validation accepted the required fields, while the runner's exact output contract correctly rejected the extra key."
+      },
+      {
+        "case_id": 83,
+        "category": "cancelled_after_gate_failure",
+        "process_attempts": 1,
+        "workflow_detected": false,
+        "output_contract_passed": false,
+        "retry_eligible": false,
+        "summary": "The case had started its outer request and was interrupted immediately after the fixed-case quality failure was confirmed."
+      }
+    ]
+  },
+  "adoption": {
+    "expected": "Parallel typed candidate collectors followed by exactly one final planning Agent that assembles, validates, conditionally repairs, revalidates, and emits the plan.",
+    "observed_case_1": "Five parallel collectors followed by one final planning Agent; no separate selection, assembly, validator, pass-through, or repair Agent.",
+    "observed_case_48": "Four parallel collectors followed by one final planning Agent; no separate selection, assembly, validator, pass-through, or repair Agent.",
+    "adopted": true
+  },
+  "tokens": {
+    "observed_successful_calls": {
+      "model_calls": 55,
+      "input_tokens": 990338,
+      "cache_read_input_tokens": 793920,
+      "cache_creation_input_tokens": 99200,
+      "uncached_input_tokens": 97218,
+      "output_tokens": 42231
+    },
+    "request_accounting": {
+      "requests_received": 56,
+      "successful_requests": 55,
+      "usage_signals": 55,
+      "cancelled_in_flight_requests": 1,
+      "coverage_complete": false
+    },
+    "completed_workflows": {
+      "workflow_runs": 2,
+      "model_calls": 33,
+      "input_tokens": 460219,
+      "cache_read_input_tokens": 370510,
+      "cache_creation_input_tokens": 46293,
+      "uncached_input_tokens": 43416,
+      "output_tokens": 17761
+    },
+    "observed_outer_residual": {
+      "model_calls": 22,
+      "input_tokens": 530119,
+      "cache_read_input_tokens": 423410,
+      "cache_creation_input_tokens": 52907,
+      "uncached_input_tokens": 53802,
+      "output_tokens": 24470
+    },
+    "candidate_observation_caveat": "Full-chain totals include partial case-83 authoring and omit its cancelled request, so they are not a complete G2 comparison."
+  },
+  "follow_up": {
+    "strategy": "Keep the adopted one-final-Agent graph and strengthen only the final plan key-set and field-repair contract.",
+    "required_day_keys": [
+      "day",
+      "current_city",
+      "transportation",
+      "breakfast",
+      "attraction",
+      "lunch",
+      "dinner",
+      "accommodation"
+    ],
+    "repair_rule": "A field-name repair must replace or rename the invalid field and delete the old key before the second validation and final submission."
+  },
+  "verification": {
+    "method_tests_passed_before_follow_up": 34,
+    "operational_runner_py_compile_passed": true
+  },
+  "notes": [
+    "No official evaluator or remaining canary cases were run after the non-retryable case-48 output-contract failure.",
+    "Case 48 also needed three authoring syntax repairs before execution, so its outer token cost is inflated; a replacement candidate must pass the full six-case gate before any token claim.",
+    "No network, rate-limit, or upstream 5xx error caused the rejection."
+  ]
+}
