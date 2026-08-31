@@ -1,0 +1,174 @@
+From ff4f605a65092f90fc7e49f2b726e6d81d2d5e9b Mon Sep 17 00:00:00 2001
+From: 1DivSin <1DivSin@users.noreply.github.com>
+Date: Mon, 31 Aug 2026 12:47:21 +0800
+Subject: [PATCH] perf(workflow): deduplicate Agent step output protocol
+
+---
+ .../workflow/fusion_flow/workflow_runner.py   | 18 +++++---
+ examples/haitun-workspace/tools/run_flow.py   | 34 +++++++++-----
+ .../workflow/test_artifact_contracts.py       | 46 ++++++++++++++++++-
+ 3 files changed, 77 insertions(+), 21 deletions(-)
+
+diff --git a/examples/haitun-workspace/skills/workflow/fusion_flow/workflow_runner.py b/examples/haitun-workspace/skills/workflow/fusion_flow/workflow_runner.py
+index 49d1ef5f..01c99e39 100644
+--- a/examples/haitun-workspace/skills/workflow/fusion_flow/workflow_runner.py
++++ b/examples/haitun-workspace/skills/workflow/fusion_flow/workflow_runner.py
+@@ -1178,13 +1178,17 @@ def _build_dispatch(
+                 allow_program_errors=True,
+             )
+ 
+-        prompt = (
+-            f"Instruction:\n{instruction}\n\n"
+-            f"Inputs: "
+-            f"{json.dumps(dict(inputs), ensure_ascii=False, sort_keys=True, default=str)}\n"
+-            f"{_contracts_text('Input Artifact contracts', input_contracts)}\n"
+-            f"{output_contract}"
+-        )
++        prompt_parts = [
++            f"Instruction:\n{instruction}",
++            f"Inputs: {json.dumps(dict(inputs), ensure_ascii=False, sort_keys=True, default=str)}",
++            _contracts_text("Input Artifact contracts", input_contracts),
++        ]
++        if foreach_iteration:
++            prompt_parts.append(
++                "This is one foreach iteration. Return one element for each output Artifact; "
++                "the runtime collects those elements into the declared aggregate Artifact."
++            )
++        prompt = "\n\n".join(prompt_parts)
+         if complete is None:
+             raise AssertionError("completion preflight did not select a completion")
+         result = await complete(
+diff --git a/examples/haitun-workspace/tools/run_flow.py b/examples/haitun-workspace/tools/run_flow.py
+index 49f85f53..03bc3d5a 100644
+--- a/examples/haitun-workspace/tools/run_flow.py
++++ b/examples/haitun-workspace/tools/run_flow.py
+@@ -2341,19 +2341,29 @@ async def _complete_agent_step(
+         if agent_config.reasoning_effort is not None:
+             extra_params["reasoning_effort"] = agent_config.reasoning_effort
+         extra_params = {name: value for name, value in extra_params.items() if value is not None}
+-    message = (
+-        "Execute exactly one assigned FusionFlow step. Do not start another workflow.\n"
+-        f"Workspace root: {workspace}\n"
+-        "Resolve every relative file path against that workspace root.\n"
+-        f"Step: {context.step_id}\n"
+-        f"Executor: {context.executor_id}\n"
+-        f"Reserved resources: {json.dumps(_resource_payload(context), ensure_ascii=False, sort_keys=True)}\n"
+-        f"Required output keys: {json.dumps(context.output_ids, ensure_ascii=False)}\n"
+-        f"{prompt}\n"
+-        "When the work is complete, call submit_step_result exactly once and by itself. "
+-        "If tool calling is unavailable, respond with exactly one JSON object keyed by exactly "
+-        "those output keys, with no surrounding prose or Markdown."
++    uses_default_system_prompt = agent_config is None or agent_config.system_prompt == _STEP_SYSTEM_PROMPT
++    message_parts: list[str] = []
++    if not uses_default_system_prompt:
++        message_parts.append("Execute exactly one assigned FusionFlow step. Do not start another workflow.")
++    message_parts.extend(
++        (
++            f"Workspace root: {workspace}",
++            "Resolve every relative file path against that workspace root.",
++            f"Step: {context.step_id}",
++            f"Executor: {context.executor_id}",
++        )
++    )
++    resources = _resource_payload(context)
++    if resources:
++        message_parts.append(f"Reserved resources: {json.dumps(resources, ensure_ascii=False, sort_keys=True)}")
++    message_parts.append(prompt)
++    if not uses_default_system_prompt:
++        message_parts.append("When the work is complete, call submit_step_result exactly once and by itself.")
++    message_parts.append(
++        "If submit_step_result is unavailable, return exactly one JSON object with exactly these keys: "
++        f"{json.dumps(context.output_ids, ensure_ascii=False)}; do not add prose or Markdown."
+     )
++    message = "\n".join(message_parts)
+ 
+     def stop_after_submission() -> bool:
+         nonlocal submission_error
+diff --git a/tests/psi_agent/workflow/test_artifact_contracts.py b/tests/psi_agent/workflow/test_artifact_contracts.py
+index 05262c6e..af095d6b 100644
+--- a/tests/psi_agent/workflow/test_artifact_contracts.py
++++ b/tests/psi_agent/workflow/test_artifact_contracts.py
+@@ -242,7 +242,7 @@ async def test_same_type_comment_and_instruction_guidance_is_combined() -> None:
+         assert contract.json_type == "object"
+         assert "Keys are idx, query, and plan." in contract.description
+         assert "exactly seven ordered day objects" in contract.description
+-        assert "Keys are idx, query, and plan." in prompt
++        assert "Keys are idx, query, and plan." not in prompt
+         assert "exactly seven ordered day objects" in prompt
+         return {"result_data": {"idx": 1, "query": "trip", "plan": []}}
+ 
+@@ -276,6 +276,8 @@ workflow enrich_flow {
+     async def complete(prompt: str, context: CompletionContext) -> object:
+         contexts.append(context)
+         assert "one foreach iteration" in prompt
++        assert "Output Artifact contracts" not in prompt
++        assert "Return the value for output artifact" not in prompt
+         return {"enriched_items": {"value": context.inputs["item"]}}
+ 
+     outputs = await execute_workflow(source, inputs={"items": ["a", "b"]}, complete=complete)
+@@ -293,6 +295,7 @@ async def test_run_flow_uses_contract_in_submit_schema_and_correction_retry(
+     sys.modules.pop("run_flow", None)
+     module = importlib.import_module("run_flow")
+     captured_schema: dict[str, object] = {}
++    captured_messages: list[str] = []
+     responses = iter(
+         (
+             '{"result_data":"wrong type"}',
+@@ -306,7 +309,8 @@ async def test_run_flow_uses_contract_in_submit_schema_and_correction_retry(
+         return object(), SimpleNamespace(messages=[])
+ 
+     async def fake_complete_step_agent(agent, conversation, message, **kwargs):
+-        del agent, conversation, message, kwargs
++        del agent, conversation, kwargs
++        captured_messages.append(message)
+         return next(responses)
+ 
+     monkeypatch.setattr(module, "_create_step_agent", fake_create_step_agent)
+@@ -340,6 +344,44 @@ async def test_run_flow_uses_contract_in_submit_schema_and_correction_retry(
+             "type": "array",
+         }
+     }
++    assert captured_schema["required"] == ["result_data"]
++    assert captured_schema["additionalProperties"] is False
++    message = captured_messages[0]
++    assert "Execute exactly one assigned FusionFlow step" not in message
++    assert "Do not start another workflow" not in message
++    assert "Required output keys" not in message
++    assert "Reserved resources" not in message
++    assert "When the work is complete" not in message
++    assert "Step: transform_step" in message
++    assert "Executor: worker" in message
++    assert "Workspace root:" in message
++    assert (
++        'If submit_step_result is unavailable, return exactly one JSON object with exactly these keys: '
++        '["result_data"]; do not add prose or Markdown.'
++    ) in message
++
++    async def fake_custom_complete(agent, conversation, message, **kwargs):
++        del agent, conversation, kwargs
++        captured_messages.append(message)
++        return '{"result_data":[]}'
++
++    monkeypatch.setattr(module, "_complete_step_agent", fake_custom_complete)
++    config_token = module._CURRENT_AGENT_CONFIG.set(
++        module.AgentConfig(name="custom-worker", system_prompt="Follow the domain policy.")
++    )
++    try:
++        await module._complete_agent_step(
++            "Execute the step.",
++            context,
++            ai_socket="unix:///unused.sock",
++            tool_registry=SimpleNamespace(tools={}, get=lambda name: None),
++        )
++    finally:
++        module._CURRENT_AGENT_CONFIG.reset(config_token)
++    custom_message = captured_messages[-1]
++    assert "Execute exactly one assigned FusionFlow step" in custom_message
++    assert "Do not start another workflow" in custom_message
++    assert "call submit_step_result exactly once" in custom_message
+ 
+ 
+ def test_run_flow_parses_typed_single_program_output() -> None:
+-- 
+2.47.3
+

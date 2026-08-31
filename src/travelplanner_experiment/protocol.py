@@ -217,6 +217,11 @@ def render_prompt(case: Case, *, arm: str, variant: str = "v1") -> str:
             V6_SINGLE_CONSUMER_SEARCH_TREATMENT,
             V6_CONDITIONAL_REPAIR_TREATMENT,
         ),
+        "v6-min-04-step-protocol-dedup": (
+            V6_QUIET_AUTHORING_TREATMENT,
+            V6_SINGLE_CONSUMER_SEARCH_TREATMENT,
+            V6_CONDITIONAL_REPAIR_TREATMENT,
+        ),
     }
     if variant.casefold() in v6_treatments:
         treatment = "".join(v6_treatments[variant.casefold()])
