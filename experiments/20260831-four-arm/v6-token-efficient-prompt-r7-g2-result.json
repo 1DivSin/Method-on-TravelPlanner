@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "v6 token-efficient versioned prompt revision 7",
+    "method_commit": "79c2653",
+    "psi_agent_commit": "4dc1a86f6836f9a28e5de5ee563b8fd91260675a",
+    "decision": "accepted_at_G2",
+    "next_gate": "G3"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-token-efficient-prompt-r7-canary6-20260831",
+    "completed_case_ids": [1, 48, 83, 116, 138, 161],
+    "failed_case_ids": [],
+    "process_attempts_per_case": 1,
+    "mean_elapsed_seconds": 243.24161021803351
+  },
+  "quality": {
+    "evaluator_directory": "/public/home/sychen/cxy/workflow/blueprint/.eval-v6-token-efficient-prompt-r7-canary6-r2-20260831",
+    "official_evaluator_commit": "e52c87f4ac348a3410c46dc3553c519db5ec5e23",
+    "official_evaluator_unmodified": true,
+    "input_transformations": [],
+    "delivery_rate": 1.0,
+    "commonsense_constraint_micro_pass_rate": 1.0,
+    "commonsense_constraint_macro_pass_rate": 1.0,
+    "hard_constraint_micro_pass_rate": 1.0,
+    "hard_constraint_macro_pass_rate": 1.0,
+    "final_pass_rate": 1.0,
+    "pass_counts": {
+      "delivery": [6, 6],
+      "commonsense_micro": [48, 48],
+      "commonsense_macro": [6, 6],
+      "hard_micro": [14, 14],
+      "hard_macro": [6, 6],
+      "final": [6, 6]
+    },
+    "strict_output_contract_passed": true,
+    "non_empty_plan_contract_passed": true
+  },
+  "authoring": {
+    "first_authored_workflows_compiled": true,
+    "writes_per_case": 1,
+    "run_flow_calls_per_case": 1,
+    "compile_repairs": [],
+    "validation_calls_by_case": {
+      "1": 1,
+      "48": 1,
+      "83": 1,
+      "116": 1,
+      "138": 2,
+      "161": 2
+    }
+  },
+  "tokens": {
+    "full_chain": {
+      "model_calls": 111,
+      "input_tokens": 1732753,
+      "cache_read_input_tokens": 1383407,
+      "cache_creation_input_tokens": 172844,
+      "uncached_input_tokens": 176502,
+      "output_tokens": 75271
+    },
+    "workflow_local": {
+      "model_calls": 82,
+      "input_tokens": 1143416,
+      "cache_read_input_tokens": 912298,
+      "cache_creation_input_tokens": 113977,
+      "uncached_input_tokens": 117141,
+      "output_tokens": 47441
+    },
+    "outer_session_by_subtraction": {
+      "model_calls": 29,
+      "input_tokens": 589337,
+      "cache_read_input_tokens": 471109,
+      "cache_creation_input_tokens": 58867,
+      "uncached_input_tokens": 59361,
+      "output_tokens": 27830
+    },
+    "request_accounting": {
+      "requests_received": 111,
+      "successful_requests": 111,
+      "usage_signals": 111,
+      "coverage_complete": true,
+      "cache_coverage_complete": true
+    },
+    "comparison_to_six_case_baseline": {
+      "baseline_model_calls": 185,
+      "model_call_reduction_fraction": 0.4,
+      "baseline_full_chain_input_tokens": 3203051,
+      "input_reduction_fraction": 0.459030468,
+      "baseline_full_chain_output_tokens": 148941,
+      "output_reduction_fraction": 0.494625389
+    }
+  },
+  "gate": {
+    "quality_regression": false,
+    "all_six_official_metrics_preserved": true,
+    "token_reduction_observed": true,
+    "passed": true
+  },
+  "infrastructure_audit": {
+    "failed_evaluator_directory": "/public/home/sychen/cxy/workflow/blueprint/.eval-v6-token-efficient-prompt-r7-canary6-20260831",
+    "failure_category": "process_infrastructure",
+    "failure_reason": "The Python 3.14 evaluator environment lacked pandas.",
+    "answer_or_model_retry_performed": false,
+    "resolution": "The identical evaluator snapshot was regenerated in a new directory and evaluated with the existing Python 3.12 environment used by prior successful official evaluations."
+  },
+  "notes": [
+    "No model answer was retried.",
+    "No network, authentication, quota, rate-limit, or upstream 5xx error occurred.",
+    "Case 116 exercised complete endpoint and inter-city ground route collection.",
+    "Case 161 exercised cross-category city viability, complete-route selection, and verbatim ground official_string preservation."
+  ]
+}
