@@ -58,7 +58,9 @@ TravelPlanner reference rows use two representations: an array when candidates
 exist, and a human-readable string when a valid query has no candidates. The
 typed adapter now maps those strings to an empty candidate result with
 `availability: "none"`, while reserving `availability: "missing"` for an absent
-reference key. Unexpected object or scalar shapes still fail closed.
+reference key. Ground-transport lookups follow the same missing-key rule instead
+of labeling an empty candidate list as available. Unexpected shapes still fail
+closed.
 
 ## Executable Workflow Artifact contracts
 
