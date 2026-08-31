@@ -51,3 +51,38 @@ The second accuracy change adds `validate_travel_plan` as a structured quality
 gate. A failed report drives one targeted assembly repair using the original
 typed candidates, followed by one revalidation. Prose-only self-review is not
 accepted as validation, and a second failure produces the empty-plan contract.
+
+## Valid empty references
+
+TravelPlanner reference rows use two representations: an array when candidates
+exist, and a human-readable string when a valid query has no candidates. The
+typed adapter now maps those strings to an empty candidate result with
+`availability: "none"`, while reserving `availability: "missing"` for an absent
+reference key. Unexpected object or scalar shapes still fail closed.
+
+## Executable Workflow Artifact contracts
+
+The psi-agent runtime patch in
+`patches/psi-agent/0001-enforce-workflow-artifact-contracts.patch` makes Artifact
+format, JSON type, and semantic descriptions executable rather than advisory.
+Contracts can be declared in FusionFlow line/block comments or in inline and
+external-file `step_instruction` text:
+
+```fusionflow
+-- @artifact flights [array]: Preserve flight_number, price, departure_time, and arrival_time; [] means no matches.
+
+step_instruction(search_step) == "Search the exact route.\n@artifact flights [array]: Preserve canonical fields.";
+```
+
+The runtime validates workflow and Step boundaries, injects descriptions into
+Agent/Human/Program contexts, and constrains Agent result submission with JSON
+Schema. Supported top-level types are `null`, `boolean`, `integer`, `number`,
+`string`, `object`, and `array`.
+
+The patch applies to `1DivSin/psi-agent` at base commit
+`545fbc73c70ba7fe6360a63d90ed4bedc8e9d181` and includes its focused regression
+suite. Apply it from a checkout of that commit with:
+
+```bash
+git am /path/to/Method-on-TravelPlanner/patches/psi-agent/0001-enforce-workflow-artifact-contracts.patch
+```
