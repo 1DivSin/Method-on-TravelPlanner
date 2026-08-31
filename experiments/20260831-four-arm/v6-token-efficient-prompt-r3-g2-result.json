@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "name": "v6 token-efficient versioned prompt revision 3",
+    "method_commit": "5563513",
+    "psi_agent_commit": "4dc1a86f6836f9a28e5de5ee563b8fd91260675a",
+    "decision": "rejected",
+    "failed_gate": "G2 latent output-contract audit"
+  },
+  "canary": {
+    "case_ids": [1, 48, 83, 116, 138, 161],
+    "run_directory": "/public/home/sychen/cxy/workflow/blueprint/.runs-v6-token-efficient-prompt-r3-canary6-20260831",
+    "completed_case_ids": [1, 48],
+    "cancelled_case_ids": [83],
+    "not_started_case_ids": [116, 138, 161],
+    "evaluator_run": false,
+    "stop_reason": "The generated case-48 Workflow encoded a fabricated one-day placeholder as its second-validation failure fallback instead of the required empty-plan object."
+  },
+  "quality": {
+    "case_1": {
+      "output_contract_passed": true,
+      "internal_validation_passed": true,
+      "validation_calls": 1,
+      "exact_day_key_contract_passed": true,
+      "outer_model_turns": 5
+    },
+    "case_48": {
+      "output_contract_passed": true,
+      "internal_validation_passed": true,
+      "validation_calls": 2,
+      "exact_day_key_contract_passed": true,
+      "outer_model_turns": 5,
+      "latent_failure_fallback_contract_passed": false
+    },
+    "case_83": {
+      "status": "cancelled_after_start",
+      "retry_eligible": false
+    }
+  },
+  "authoring": {
+    "workflow_structure_adopted": true,
+    "first_authored_workflows_compiled": true,
+    "compile_repairs": [],
+    "structure": "Parallel typed collectors followed by one final planning, validation, and repair Agent Step."
+  },
+  "tokens": {
+    "observed_successful_calls": {
+      "model_calls": 44,
+      "input_tokens": 726999,
+      "cache_read_input_tokens": 580107,
+      "cache_creation_input_tokens": 72480,
+      "uncached_input_tokens": 74412,
+      "output_tokens": 35160
+    },
+    "request_accounting": {
+      "requests_received": 44,
+      "successful_requests": 44,
+      "usage_signals": 44,
+      "coverage_complete": true
+    },
+    "completed_case_1_workflow": {
+      "model_calls": 14,
+      "input_tokens": 144032,
+      "cache_read_input_tokens": 115416,
+      "cache_creation_input_tokens": 14417,
+      "uncached_input_tokens": 14199,
+      "output_tokens": 4314
+    },
+    "completed_case_48_workflow": {
+      "model_calls": 17,
+      "input_tokens": 337560,
+      "cache_read_input_tokens": 271586,
+      "cache_creation_input_tokens": 33936,
+      "uncached_input_tokens": 32038,
+      "output_tokens": 17566
+    }
+  },
+  "follow_up": {
+    "strategy": "State the exact three-field empty-plan JSON literal and explicitly forbid placeholder or fabricated day entries."
+  },
+  "notes": [
+    "Both completed cases passed their exercised internal validation and strict runner output contract.",
+    "No model answer was retried.",
+    "No network, rate-limit, or upstream 5xx error occurred.",
+    "The full-chain totals include the start and cancellation of case 83, so they are not formal two-case or six-case totals."
+  ]
+}

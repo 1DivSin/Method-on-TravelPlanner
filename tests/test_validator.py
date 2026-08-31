@@ -100,6 +100,8 @@ class ValidatorTest(unittest.TestCase):
         self.assertIn('`allowed_tool(agent, "search_flights");`', prompt)
         self.assertIn("declare every Step and Agent as separate constants", prompt)
         self.assertIn("Never combine Step and Agent types", prompt)
+        self.assertIn('`{"idx": <case idx>, "query": <exact original query>, "plan": []}`', prompt)
+        self.assertIn("Never submit placeholder or fabricated day entries", prompt)
 
 
 if __name__ == "__main__":
