@@ -3,3 +3,7 @@ __pycache__/
 .pytest_cache/
 .runs/
 .secrets/
+.venv/
+secrets/
+runs/*/
+evaluations/*/

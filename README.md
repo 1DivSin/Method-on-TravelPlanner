@@ -41,6 +41,16 @@ The following historical treatments are deliberately absent:
 The official evaluator belongs after final output collection. Its result must
 not select retries, amend prompts, or alter an acceptance path.
 
+## Current experiment environment
+
+The `experiment/` directory is a frozen TravelPlanner runner snapshot used by
+the maintained experiment root. It contains the preregistered 30-case inputs,
+prompt template, task-tool adapters, provenance-producing runner, and
+post-inference evaluator snapshot preparation scripts. Generated runs,
+credentials, and evaluator outputs are intentionally kept out of this source
+tree. See `docs/CURRENT_EXPERIMENT.md` for the exact hashes and baseline
+commit required to execute it.
+
 ## Verification
 
 Run the domain-neutral and benchmark-contract unit tests with:
